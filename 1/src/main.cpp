@@ -3,12 +3,12 @@
 #include "prints.h"
 
 int main() {
-	auto data_ = taxi_station_data();
+	auto [data_, size] = taxi_station_data();
 	
-	auto daywise_sums = col_sums(data_.first, data_.second, 7);
+	auto daywise_sums = col_sums(data_, size, 7);
 	auto idx = idx_max(daywise_sums, 7);
 
-	print_stats(data_.first, daywise_sums, data_.second, idx);
+	print_stats(data_, daywise_sums, size, idx);
 	
-	delete_taxi_station_data(data_.first, data_.second);
+	delete_taxi_station_data(data_, size);
 }
