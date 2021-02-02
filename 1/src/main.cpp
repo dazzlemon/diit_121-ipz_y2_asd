@@ -1,12 +1,17 @@
 #include "asd1.h"
-#include "helper/taxi_data.h"
-#include "helper/prints.h"
+#include "taxi_data.h"
+#include "prints.h"
 
 int main() {
-	auto data_ = taxi_station_data();
-	
-	auto daywise_sums = col_sums(data_);
-	auto idx = idx_max(daywise_sums, 7);
+	auto rd = std::random_device();
+	auto gen = std::default_random_engine(rd());
+	auto distrib = std::uniform_int_distribution<size_t>(10, 20);
 
-	print_stats(data_, daywise_sums, idx);
+	auto td = TaxiData(distrib(gen));
+	fill_rand(td);
+	
+	auto sums = col_sums(td.df());
+	auto idx = idx_max(sums, 7);
+
+	print_stats(td, sums, idx);
 }
