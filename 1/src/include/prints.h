@@ -21,6 +21,7 @@ void print(const TaxiData& td);
  * @param[in] td TaxiData object
  * @param[in] sums Summaries of each day
  * @param[in] day Index of the most profitable day
+ * @details
  * Prints table for given TaxiData object.
  * Columns represent days starting from monday,
  * rows represent individual taxis.

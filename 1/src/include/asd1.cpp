@@ -3,10 +3,10 @@
 #include <memory>
 
 auto col_sums(const Matrix<int>& data_) -> int* {
-	int* result = new int[data_.cols()];// cppcoreguidelines-owning-memory
-	for (size_t j = 0; j < data_.cols(); j++) {
+	int* result = new int[data_.getCols()];// cppcoreguidelines-owning-memory
+	for (size_t j = 0; j < data_.getCols(); j++) {
 		result[j] = 0;// cppcoreguidelines-pro-bounds-pointer-arithmetic
-		for (size_t i = 0; i < data_.rows(); i++) {
+		for (size_t i = 0; i < data_.getRows(); i++) {
 			result[j] += data_.get(i, j);// cppcoreguidelines-pro-bounds-pointer-arithmetic
 		}
 	}

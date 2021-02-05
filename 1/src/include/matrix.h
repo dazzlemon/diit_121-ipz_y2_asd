@@ -1,45 +1,125 @@
-#ifndef __MATRIX_H__
-#define __MATRIX_H__
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include <cstddef>
 
 template<class T>
 class Matrix {
-	T** __matrix;
-	size_t __rows;
-	size_t __cols;
+	T** matrix;
+	size_t rows;
+	size_t cols;
+
+	void reserve();
+	void free();
+	void copy(const Matrix& other);
+
 public:
-	Matrix(size_t rows, size_t cols) {
-		__rows = rows;
-		__cols = cols;
-		__matrix = new T*[__rows];
-		for (size_t i = 0; i < __rows; i++)
-			__matrix[i] = new T[__cols];
-	}
+	Matrix(size_t rows, size_t cols);
+	Matrix(const Matrix& other);
+	Matrix(Matrix&& other);
+	~Matrix();
+	
+	auto operator= (const Matrix& other) -> Matrix&;
+	auto operator= (Matrix&& other) -> Matrix&;
 
-	Matrix(const Matrix<T>& other) {
-		Matrix(other.rows(), other.cols());
-		for (size_t i = 0; i < __rows; i++)
-			for (size_t j = 0; j < __cols; j++)
-				__matrix[i][j] = other.get(i, j);
-	}
+	auto at(size_t x, size_t y) -> T&;
+	auto get(size_t x, size_t y) const -> T;
 
-	~Matrix() {
-		for (size_t i = 0; i < __cols; i++)
-			delete [] __matrix[i];
-		delete __matrix;
-	}
-
-	T& at(size_t x, size_t y) {
-		return __matrix[x][y];
-	}
-
-	T get(size_t x, size_t y) const {
-		return __matrix[x][y];
-	}
-
-	size_t rows() const {return __rows;}
-
-	size_t cols() const {return __cols;}
+	[[nodiscard]] auto getRows() const -> size_t {return this->rows;}
+	[[nodiscard]] auto getCols() const -> size_t {return this->cols;}
 };
+
+template<class T>
+void Matrix<T>::reserve() {
+	this->matrix = new T*[this->rows];// cppcoreguidelines-owning-memory
+	for (size_t i = 0; i < this->rows; i++) {
+		this->matrix[i] = new T[this->cols];// cppcoreguidelines-owning-memory
+	}
+}
+
+
+template<class T>
+void Matrix<T>::copy(const Matrix& other) {
+	for (size_t i = 0; i < this->rows; i++) {
+		for (size_t j = 0; j < this->cols; j++) {
+			this->matrix[i][j] = other.get(i, j);
+		}
+	}
+}
+
+
+template<class T>
+Matrix<T>::Matrix(size_t rows, size_t cols) : rows(rows), cols(cols) {
+	reserve();	
+}
+
+
+template<class T>
+Matrix<T>::Matrix(const Matrix& other) : rows(other.rows), cols(other.cols) {
+	this->reserve();
+	this->copy(other);
+}
+
+
+template<class T>
+Matrix<T>::Matrix(Matrix&& other) : rows(other.rows), cols(other.cols) {
+	this->reserve();
+	this->copy(other);
+	for (size_t i = 0; i < this->rows; i++) {
+		for (size_t j = 0; j < this->cols; j++) {
+			other.matrix[i][j] = T(0);
+		}
+	}
+}
+
+
+template<class T>
+Matrix<T>::~Matrix() {
+	this->free();
+}
+
+
+template<class T>
+auto Matrix<T>::operator= (const Matrix& other) -> Matrix& {
+	if (this != &other) {
+		this->free();
+		this->reserve();
+		this->copy(other);
+	}
+	return *this;
+}
+
+
+template<class T>
+auto Matrix<T>::operator= (Matrix&& other) -> Matrix& {
+	this->free();
+	this->copy(other);
+	for (size_t i = 0; i < this->rows; i++) {
+		for (size_t j = 0; j < this->cols; j++) {
+			other.matrix[i][j] = T(0);
+		}
+	}
+}
+
+
+template<class T>
+void Matrix<T>::free() {
+	for (size_t i = 0; i < this->cols; i++) {
+		delete [] this->matrix[i];// cppcoreguidelines-owning-memory
+	}
+	delete this->matrix;
+}
+
+
+template<class T>
+auto Matrix<T>::at(size_t x, size_t y) -> T& {
+	return this->matrix[x][y];
+}
+
+
+template<class T>
+auto Matrix<T>::get(size_t x, size_t y) const -> T {
+	return this->matrix[x][y];
+}
+
 #endif
