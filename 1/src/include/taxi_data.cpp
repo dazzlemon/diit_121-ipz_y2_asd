@@ -2,7 +2,7 @@
 
 void fill_rand(TaxiData* td, int seed) {
 	const size_t MIN = 100;
-	const size_t MAX = 100;
+	const size_t MAX = 999;
 	auto generator = std::default_random_engine(seed);
 	auto distributionDay = std::uniform_int_distribution<int>(MIN, MAX);	
 	for (size_t i = 0; i < td->getSize(); i++) {
