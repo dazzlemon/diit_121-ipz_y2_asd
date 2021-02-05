@@ -1,0 +1,74 @@
+\hypertarget{classMatrix}{}\doxysection{Matrix$<$ T $>$ Class Template Reference}
+\label{classMatrix}\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+
+
+{\ttfamily \#include $<$matrix.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMatrix_a52cefa4eb82a8c3c57439c565b8c0f29}\label{classMatrix_a52cefa4eb82a8c3c57439c565b8c0f29}} 
+{\bfseries Matrix} (size\+\_\+t rows, size\+\_\+t cols)
+\item 
+\mbox{\Hypertarget{classMatrix_ab829dc851f8fcafee35a729a31457d73}\label{classMatrix_ab829dc851f8fcafee35a729a31457d73}} 
+{\bfseries Matrix} (const \mbox{\hyperlink{classMatrix}{Matrix}} \&other)
+\item 
+\mbox{\Hypertarget{classMatrix_a534f07d0e3ec3c9c62f3742c4efc6eed}\label{classMatrix_a534f07d0e3ec3c9c62f3742c4efc6eed}} 
+{\bfseries Matrix} (\mbox{\hyperlink{classMatrix}{Matrix}} \&\&other)
+\item 
+\mbox{\Hypertarget{classMatrix_ac4cd50ba502b1ac6ad8a26aed4c3a11d}\label{classMatrix_ac4cd50ba502b1ac6ad8a26aed4c3a11d}} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classMatrix}{Matrix}} \&other) -\/$>$ \mbox{\hyperlink{classMatrix}{Matrix}} \&
+\item 
+\mbox{\Hypertarget{classMatrix_a061e1fb28ff0f8277598ba824abf7448}\label{classMatrix_a061e1fb28ff0f8277598ba824abf7448}} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classMatrix}{Matrix}} \&\&other) -\/$>$ \mbox{\hyperlink{classMatrix}{Matrix}} \&
+\item 
+auto \mbox{\hyperlink{classMatrix_a51749fbd0403f7409712fdc9daf5ba10}{at}} (size\+\_\+t x, size\+\_\+t y) -\/$>$ T \&
+\item 
+auto \mbox{\hyperlink{classMatrix_aa4cb4c5a375ddf25012b0991ecabdf78}{get}} (size\+\_\+t x, size\+\_\+t y) const -\/$>$ T
+\item 
+auto \mbox{\hyperlink{classMatrix_ad884bcca210041012df36d7a488c5d62}{get\+Rows}} () const -\/$>$ size\+\_\+t
+\item 
+auto \mbox{\hyperlink{classMatrix_a836b1a09096fedcf2f384ad8172541f7}{get\+Cols}} () const -\/$>$ size\+\_\+t
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Matrix$<$ T $>$}
+
+Represents a 2D matrix 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMatrix_a51749fbd0403f7409712fdc9daf5ba10}\label{classMatrix_a51749fbd0403f7409712fdc9daf5ba10}} 
+\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!at@{at}}
+\index{at@{at}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+auto \mbox{\hyperlink{classMatrix}{Matrix}}$<$ T $>$\+::at (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x,  }\item[{size\+\_\+t}]{y }\end{DoxyParamCaption}) -\/$>$ T\&}
+
+Returns a reference to element at \mbox{[}x\mbox{]}\mbox{[}y\mbox{]}. \mbox{\Hypertarget{classMatrix_aa4cb4c5a375ddf25012b0991ecabdf78}\label{classMatrix_aa4cb4c5a375ddf25012b0991ecabdf78}} 
+\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!get@{get}}
+\index{get@{get}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+auto \mbox{\hyperlink{classMatrix}{Matrix}}$<$ T $>$\+::get (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x,  }\item[{size\+\_\+t}]{y }\end{DoxyParamCaption}) const -\/$>$ T}
+
+Returns a value of element at \mbox{[}x\mbox{]}\mbox{[}y\mbox{]}. \mbox{\Hypertarget{classMatrix_a836b1a09096fedcf2f384ad8172541f7}\label{classMatrix_a836b1a09096fedcf2f384ad8172541f7}} 
+\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!getCols@{getCols}}
+\index{getCols@{getCols}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getCols()}{getCols()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+auto \mbox{\hyperlink{classMatrix}{Matrix}}$<$ T $>$\+::get\+Cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ size\+\_\+t \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns amount of columns in this object. \mbox{\Hypertarget{classMatrix_ad884bcca210041012df36d7a488c5d62}\label{classMatrix_ad884bcca210041012df36d7a488c5d62}} 
+\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!getRows@{getRows}}
+\index{getRows@{getRows}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getRows()}{getRows()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+auto \mbox{\hyperlink{classMatrix}{Matrix}}$<$ T $>$\+::get\+Rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ size\+\_\+t \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns amount of rows in this object. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/dazzlemon/hdd\+\_\+dazzlemon/github/diit\+\_\+121-\/ipz\+\_\+y2\+\_\+asd/1/src/include/matrix.\+h\end{DoxyCompactItemize}

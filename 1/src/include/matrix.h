@@ -3,6 +3,9 @@
 
 #include <cstddef>
 
+/**
+ * Represents a 2D matrix
+ */
 template<class T>
 class Matrix {
 	T** matrix;
@@ -22,10 +25,27 @@ public:
 	auto operator= (const Matrix& other) -> Matrix&;
 	auto operator= (Matrix&& other) -> Matrix&;
 
+	/**
+	 * Returns a reference to element at [x][y].
+	 */
 	auto at(size_t x, size_t y) -> T&;
+
+
+	/**
+	 * Returns a value of element at [x][y].
+	 */
 	auto get(size_t x, size_t y) const -> T;
 
+
+	/**
+	 * Returns amount of rows in this object.
+	 */
 	[[nodiscard]] auto getRows() const -> size_t {return this->rows;}
+	
+
+	/**
+	 * Returns amount of columns in this object.
+	 */
 	[[nodiscard]] auto getCols() const -> size_t {return this->cols;}
 };
 

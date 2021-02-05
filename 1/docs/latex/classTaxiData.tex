@@ -1,0 +1,47 @@
+\hypertarget{classTaxiData}{}\doxysection{Taxi\+Data Class Reference}
+\label{classTaxiData}\index{TaxiData@{TaxiData}}
+
+
+{\ttfamily \#include $<$taxi\+\_\+data.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTaxiData_ad71132dc1d6247a6adeef6ae6bc5964d}\label{classTaxiData_ad71132dc1d6247a6adeef6ae6bc5964d}} 
+{\bfseries Taxi\+Data} (size\+\_\+t size)
+\item 
+auto \mbox{\hyperlink{classTaxiData_abd11975a51dcb66dc668dc6bfe714319}{get\+Size}} () const -\/$>$ size\+\_\+t
+\item 
+auto \mbox{\hyperlink{classTaxiData_a8faaedf9fa946196156733e48a9cf492}{df}} () -\/$>$ \mbox{\hyperlink{classMatrix}{Matrix}}$<$ int $>$ \&
+\item 
+auto \mbox{\hyperlink{classTaxiData_a158bc02c182735e199d273c8f276f7ca}{get}} (size\+\_\+t x, size\+\_\+t y) const -\/$>$ int
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a week table of daily profits for a taxi station. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTaxiData_a8faaedf9fa946196156733e48a9cf492}\label{classTaxiData_a8faaedf9fa946196156733e48a9cf492}} 
+\index{TaxiData@{TaxiData}!df@{df}}
+\index{df@{df}!TaxiData@{TaxiData}}
+\doxysubsubsection{\texorpdfstring{df()}{df()}}
+{\footnotesize\ttfamily auto Taxi\+Data\+::df (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classMatrix}{Matrix}}$<$int$>$\& \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a reference to the raw datatable. \mbox{\Hypertarget{classTaxiData_a158bc02c182735e199d273c8f276f7ca}\label{classTaxiData_a158bc02c182735e199d273c8f276f7ca}} 
+\index{TaxiData@{TaxiData}!get@{get}}
+\index{get@{get}!TaxiData@{TaxiData}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily auto Taxi\+Data\+::get (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x,  }\item[{size\+\_\+t}]{y }\end{DoxyParamCaption}) const -\/$>$ int \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns profit for xth taxi on yth day. \mbox{\Hypertarget{classTaxiData_abd11975a51dcb66dc668dc6bfe714319}\label{classTaxiData_abd11975a51dcb66dc668dc6bfe714319}} 
+\index{TaxiData@{TaxiData}!getSize@{getSize}}
+\index{getSize@{getSize}!TaxiData@{TaxiData}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily auto Taxi\+Data\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ size\+\_\+t \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns amount of taxis working on station. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/dazzlemon/hdd\+\_\+dazzlemon/github/diit\+\_\+121-\/ipz\+\_\+y2\+\_\+asd/1/src/include/taxi\+\_\+data.\+h\end{DoxyCompactItemize}

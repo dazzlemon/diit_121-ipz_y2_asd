@@ -8,21 +8,29 @@
 const size_t DAYS_IN_WEEK = 7;
 
 /**
- *
+ * Represents a week table of daily profits for a taxi station.
  */
 class TaxiData {
 	size_t size;
 	Matrix<int>* dataframe;
 public:
-	explicit TaxiData(size_t size) {
-		this->size = size;
+	explicit TaxiData(size_t size) : size(size) {
 		this->dataframe = new Matrix<int>(size, DAYS_IN_WEEK);// cppcoreguidelines-owning-memory
 	}
 
+	/**
+	 * Returns amount of taxis working on station.
+	 */
 	[[nodiscard]] auto getSize() const -> size_t {return this->size;}
 
+	/**
+	 * Returns a reference to the raw datatable.
+	 */
 	auto df() -> Matrix<int>& {return *this->dataframe;}
 
+	/**
+	 * Returns profit for xth taxi on yth day.
+	 */
 	[[nodiscard]] auto get(size_t x, size_t y) const -> int {return this->dataframe->at(x, y);}
 };
 
