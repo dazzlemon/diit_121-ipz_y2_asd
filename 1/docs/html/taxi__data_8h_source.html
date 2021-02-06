@@ -69,42 +69,44 @@ $(function() {
 <div class="title">taxi_data.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TAXI_DATA_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TAXI_DATA_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;matrix.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;climits&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;random&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">const</span> <span class="keywordtype">size_t</span> DAYS_IN_WEEK = 7;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classTaxiData.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTaxiData.html">TaxiData</a> {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classMatrix.html">Matrix&lt;int&gt;</a>* dataframe;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classTaxiData.html">TaxiData</a>(<span class="keywordtype">size_t</span> size) : size(size) {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        this-&gt;dataframe = <span class="keyword">new</span> <a class="code" href="classMatrix.html">Matrix&lt;int&gt;</a>(size, DAYS_IN_WEEK);<span class="comment">// cppcoreguidelines-owning-memory</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319">   24</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319">getSize</a>() const -&gt; <span class="keywordtype">size_t</span> {<span class="keywordflow">return</span> this-&gt;size;}</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classTaxiData.html#a8faaedf9fa946196156733e48a9cf492">   29</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="classTaxiData.html#a8faaedf9fa946196156733e48a9cf492">df</a>() -&gt; <a class="code" href="classMatrix.html">Matrix&lt;int&gt;</a>&amp; {<span class="keywordflow">return</span> *this-&gt;dataframe;}</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classTaxiData.html#a158bc02c182735e199d273c8f276f7ca">   34</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="classTaxiData.html#a158bc02c182735e199d273c8f276f7ca">get</a>(<span class="keywordtype">size_t</span> x, <span class="keywordtype">size_t</span> y) <span class="keyword">const</span> -&gt; <span class="keywordtype">int</span> {<span class="keywordflow">return</span> this-&gt;dataframe-&gt;<a class="code" href="classMatrix.html#a51749fbd0403f7409712fdc9daf5ba10">at</a>(x, y);}</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> fill_rand(<a class="code" href="classTaxiData.html">TaxiData</a>* td, <span class="keywordtype">int</span> seed);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<a href="taxi__data_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TAXI_DATA_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define TAXI_DATA_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="matrix_8h.html">matrix.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;climits&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">const</span> <span class="keywordtype">size_t</span> DAYS_IN_WEEK = 7;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classTaxiData.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTaxiData.html">TaxiData</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classMatrix.html">Matrix&lt;int&gt;</a>* dataframe;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classTaxiData.html">TaxiData</a>(<span class="keywordtype">size_t</span> size) : size(size) {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        this-&gt;dataframe = <span class="keyword">new</span> <a class="code" href="classMatrix.html">Matrix&lt;int&gt;</a>(size, DAYS_IN_WEEK);<span class="comment">// cppcoreguidelines-owning-memory</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319">   25</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319">getSize</a>() const -&gt; <span class="keywordtype">size_t</span> {<span class="keywordflow">return</span> this-&gt;size;}</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classTaxiData.html#a8faaedf9fa946196156733e48a9cf492">   30</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="classTaxiData.html#a8faaedf9fa946196156733e48a9cf492">df</a>() -&gt; <a class="code" href="classMatrix.html">Matrix&lt;int&gt;</a>&amp; {<span class="keywordflow">return</span> *this-&gt;dataframe;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classTaxiData.html#a158bc02c182735e199d273c8f276f7ca">   35</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="classTaxiData.html#a158bc02c182735e199d273c8f276f7ca">get</a>(<span class="keywordtype">size_t</span> x, <span class="keywordtype">size_t</span> y) <span class="keyword">const</span> -&gt; <span class="keywordtype">int</span> {<span class="keywordflow">return</span> this-&gt;dataframe-&gt;<a class="code" href="classMatrix.html#a51749fbd0403f7409712fdc9daf5ba10">at</a>(x, y);}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="taxi__data_8h.html#aec640c3c2db93225eb99d65e8838e7b3">fill_rand</a>(<a class="code" href="classTaxiData.html">TaxiData</a>* td, <span class="keywordtype">int</span> seed);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> fill_rand(<a class="code" href="classTaxiData.html">TaxiData</a>* td);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="taxi__data_8h.html#aec640c3c2db93225eb99d65e8838e7b3">fill_rand</a>(<a class="code" href="classTaxiData.html">TaxiData</a>* td);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix&lt; int &gt;</a></div></div>
-<div class="ttc" id="aclassMatrix_html_a51749fbd0403f7409712fdc9daf5ba10"><div class="ttname"><a href="classMatrix.html#a51749fbd0403f7409712fdc9daf5ba10">Matrix::at</a></div><div class="ttdeci">auto at(size_t x, size_t y) -&gt; T &amp;</div><div class="ttdef"><b>Definition:</b> matrix.h:135</div></div>
-<div class="ttc" id="aclassTaxiData_html"><div class="ttname"><a href="classTaxiData.html">TaxiData</a></div><div class="ttdef"><b>Definition:</b> taxi_data.h:13</div></div>
-<div class="ttc" id="aclassTaxiData_html_a158bc02c182735e199d273c8f276f7ca"><div class="ttname"><a href="classTaxiData.html#a158bc02c182735e199d273c8f276f7ca">TaxiData::get</a></div><div class="ttdeci">auto get(size_t x, size_t y) const -&gt; int</div><div class="ttdef"><b>Definition:</b> taxi_data.h:34</div></div>
-<div class="ttc" id="aclassTaxiData_html_a8faaedf9fa946196156733e48a9cf492"><div class="ttname"><a href="classTaxiData.html#a8faaedf9fa946196156733e48a9cf492">TaxiData::df</a></div><div class="ttdeci">auto df() -&gt; Matrix&lt; int &gt; &amp;</div><div class="ttdef"><b>Definition:</b> taxi_data.h:29</div></div>
-<div class="ttc" id="aclassTaxiData_html_abd11975a51dcb66dc668dc6bfe714319"><div class="ttname"><a href="classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319">TaxiData::getSize</a></div><div class="ttdeci">auto getSize() const -&gt; size_t</div><div class="ttdef"><b>Definition:</b> taxi_data.h:24</div></div>
+<div class="ttc" id="aclassMatrix_html_a51749fbd0403f7409712fdc9daf5ba10"><div class="ttname"><a href="classMatrix.html#a51749fbd0403f7409712fdc9daf5ba10">Matrix::at</a></div><div class="ttdeci">auto at(size_t x, size_t y) -&gt; T &amp;</div><div class="ttdef"><b>Definition:</b> matrix.h:136</div></div>
+<div class="ttc" id="aclassTaxiData_html"><div class="ttname"><a href="classTaxiData.html">TaxiData</a></div><div class="ttdef"><b>Definition:</b> taxi_data.h:14</div></div>
+<div class="ttc" id="aclassTaxiData_html_a158bc02c182735e199d273c8f276f7ca"><div class="ttname"><a href="classTaxiData.html#a158bc02c182735e199d273c8f276f7ca">TaxiData::get</a></div><div class="ttdeci">auto get(size_t x, size_t y) const -&gt; int</div><div class="ttdef"><b>Definition:</b> taxi_data.h:35</div></div>
+<div class="ttc" id="aclassTaxiData_html_a8faaedf9fa946196156733e48a9cf492"><div class="ttname"><a href="classTaxiData.html#a8faaedf9fa946196156733e48a9cf492">TaxiData::df</a></div><div class="ttdeci">auto df() -&gt; Matrix&lt; int &gt; &amp;</div><div class="ttdef"><b>Definition:</b> taxi_data.h:30</div></div>
+<div class="ttc" id="aclassTaxiData_html_abd11975a51dcb66dc668dc6bfe714319"><div class="ttname"><a href="classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319">TaxiData::getSize</a></div><div class="ttdeci">auto getSize() const -&gt; size_t</div><div class="ttdef"><b>Definition:</b> taxi_data.h:25</div></div>
+<div class="ttc" id="amatrix_8h_html"><div class="ttname"><a href="matrix_8h.html">matrix.h</a></div></div>
+<div class="ttc" id="ataxi__data_8h_html_aec640c3c2db93225eb99d65e8838e7b3"><div class="ttname"><a href="taxi__data_8h.html#aec640c3c2db93225eb99d65e8838e7b3">fill_rand</a></div><div class="ttdeci">void fill_rand(TaxiData *td, int seed)</div><div class="ttdoc">Fills TaxiData object with random values from 100 to 999.</div><div class="ttdef"><b>Definition:</b> taxi_data.cpp:3</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

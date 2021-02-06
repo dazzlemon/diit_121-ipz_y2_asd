@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['idx_5fmax_26',['idx_max',['../asd1_8h.html#a5d1b8568a23c497c573593315aa1e773',1,'asd1.cpp']]]
+  ['get_28',['get',['../classMatrix.html#aa4cb4c5a375ddf25012b0991ecabdf78',1,'Matrix::get()'],['../classTaxiData.html#a158bc02c182735e199d273c8f276f7ca',1,'TaxiData::get()']]],
+  ['getcols_29',['getCols',['../classMatrix.html#a836b1a09096fedcf2f384ad8172541f7',1,'Matrix']]],
+  ['getrows_30',['getRows',['../classMatrix.html#ad884bcca210041012df36d7a488c5d62',1,'Matrix']]],
+  ['getsize_31',['getSize',['../classTaxiData.html#abd11975a51dcb66dc668dc6bfe714319',1,'TaxiData']]]
 ];
