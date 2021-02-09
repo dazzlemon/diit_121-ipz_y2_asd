@@ -14,7 +14,7 @@ public class Tests {
 	}
 
 	public static int[] quickSort() {
-		int[] res = new int[20];
+		int[] res = new int[1000];
 		for (int i = 0; i < res.length; i++) {
 			var a = new Integer[i + 1];
 			fill(a);
@@ -24,7 +24,7 @@ public class Tests {
 	}
 
 	public static int[] bubbleSort() {
-		int[] res = new int[20];
+		int[] res = new int[1000];
 		for (int i = 0; i < res.length; i++) {
 			var a = new Integer[i + 1];
 			fill(a);
@@ -34,7 +34,7 @@ public class Tests {
 	}
 
 	public static int[] gnomeSort() {
-		int[] res = new int[20];
+		int[] res = new int[1000];
 		for (int i = 0; i < res.length; i++) {
 			var a = new Integer[i + 1];
 			fill(a);

@@ -14,14 +14,8 @@ with open('tests.txt', 'r') as f:
 for s in data:
     lis = list(s)
     print(lis)
-    plt.scatter(lis, np.arange(0, len(lis)))
-
-#ts = pd.Series(np.random.randn(1000), index = pd.date_range(
-#    '1/1/2000',
-#    periods = 1000
-#))
-
-#ts = ts.cumsum()
-#ts.plot()
+    plt.scatter(y=lis,
+                x=np.arange(0, len(lis)))
+plt.legend(['quicksort', 'bubblesort', 'gnomesort'])
 
 plt.show()
