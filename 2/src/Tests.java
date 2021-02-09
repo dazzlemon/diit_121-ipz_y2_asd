@@ -1,6 +1,7 @@
 package src;
 
 import java.util.Random;
+import java.util.Arrays;
 
 public class Tests {
 	public static void fill(Integer[] a) {
@@ -15,7 +16,7 @@ public class Tests {
 	public static int[] quickSort() {
 		int[] res = new int[10];
 		for (int i = 0; i < res.length; i++) {
-			var a = new Integer[(int)Math.pow(2, i)];
+			var a = new Integer[i + 1];
 			fill(a);
 			res[i] = Sorts.quickSort(a);
 		}
@@ -25,7 +26,7 @@ public class Tests {
 	public static int[] bubbleSort() {
 		int[] res = new int[10];
 		for (int i = 0; i < res.length; i++) {
-			var a = new Integer[(int)Math.pow(2, i)];
+			var a = new Integer[i + 1];
 			fill(a);
 			res[i] = Sorts.bubbleSort(a);
 		}
@@ -35,7 +36,7 @@ public class Tests {
 	public static int[] gnomeSort() {
 		int[] res = new int[10];
 		for (int i = 0; i < res.length; i++) {
-			var a = new Integer[(int)Math.pow(2, i)];
+			var a = new Integer[i + 1];
 			fill(a);
 			res[i] = Sorts.gnomeSort(a);
 		}

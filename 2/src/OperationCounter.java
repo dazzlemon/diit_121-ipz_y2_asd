@@ -5,6 +5,7 @@ public class OperationCounter {
 	private int _incDecCost = 1;
 	private int _comparisonCost = 1;
 	private int _assignmentCost = 1;
+	private int _jumpCost = 1;
 
 	public void incDec() {
 		_counter += _incDecCost;
@@ -16,6 +17,10 @@ public class OperationCounter {
 
 	public void assign() {
 		_counter += _assignmentCost;
+	}
+
+	public void jmp() {
+		_counter += _jumpCost;
 	}
 
 	public int getCount() {
