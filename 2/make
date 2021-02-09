@@ -1,0 +1,3 @@
+#!/bin/bash
+
+javac -cp .:src/py4j.jar src/Gate.java
