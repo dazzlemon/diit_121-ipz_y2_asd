@@ -2,26 +2,31 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
+"""
+    first line - quicksort
+    second     - bubblesort
+    third      - gnomesort
+    (space separated values)
+"""
 with open('tests.txt', 'r') as f:
-    data = map(
-        lambda s: map(
+    data = list(map(
+        lambda s: list(map(
             lambda n: int(n),
             s.replace('\n', '').split()
-        ),
+        )),
         f.readlines()
-    )
+    ))
 
-labels = ['quicksort', 'bubblesort', 'gnomesort']
-for s, l in zip(data, labels):
-    y = list(s)
-    x = np.arange(0, len(y))
+data[0] = (data[0], 'quicksort 10 * n * log(n)', lambda n: 10 * n * np.log(n))
+data[1] = (data[1], 'bubblesort 3.5 * n^2', lambda n: 3.5 * n * n)
+data[2] = (data[2], 'gnomesort 1.75 * n^2', lambda n: 1.75 * n * n)
 
-    z = np.polyfit(x, y, 2)
-    p = np.poly1d(z)
+data = np.array(data, dtype=object)
 
-    plt.scatter(x, y,
-                label=l + ' y=%.6fx2+(%.6fx)+(%.6f)'%(z[0], z[1], z[2]))
-    #plt.plot(x, p(x), 'r--')
+for s, l, f in data[[0, 1, 2]]:
+    x = np.arange(0, len(s))
+    plt.scatter(x, s, label=l)
+    plt.plot(x, f(x), 'r--')
 
 plt.legend(loc='upper left')
 plt.title('Sorting algorithms')
