@@ -1,52 +1,93 @@
 package src;
 
 public class Sorts {
-	public static <T extends Comparable<T>> void gnomeSort(T[] a) {
+	public static <T extends Comparable<T>> int gnomeSort(T[] a) {
+		var counter = new OperationCounter();
+		counter.assign();// int i = 1 -> assignment
 		for (int i = 1; i < a.length; i++) {
-			for (int j = i; j > 0 && a[j - 1].compareTo(a[j]) > 0; j--) {
+			counter.assign();// int j = i -> assignment
+			for (int j = i; j > 0 && a[j - 1].compareTo(a[j]) > 0; j--) {	
+				counter.assign(); counter.assign(); counter.assign();// swap counts as 3 assignments
 				_swapByIdx(a, j - 1, j);
+
+				counter.comp(); counter.comp();// j > 0, compareTo -> comparison; twice
+				counter.incDec();// j - 1, j-- -> decrement;                      once (essintially the same operation)
 			}
+			counter.comp();// i < a.length -> comparison
+			counter.incDec();// i++        -> increment
 		}
+		return counter.getCount();
 	}	
 
-	public static <T extends Comparable<T>> void bubbleSort(T[] a) {
-		for (int n = a.length; n > 1; ) {
+	public static <T extends Comparable<T>> int bubbleSort(T[] a) {
+		var counter = new OperationCounter();
+		counter.assign();// int n = a.length -> assignment
+		for (int n = a.length; n > 1; ) {	
+			counter.assign();// int newN = 0 -> assignment
 			int newN = 0;
+
+			counter.assign();// int i = 1 -> assignment
 			for (int i = 1; i < n; i++) {
+				counter.comp();// compareTo -> comparison
 				if (a[i - 1].compareTo(a[i]) > 0) {
+					counter.assign(); counter.assign(); counter.assign();// swap -> 3 assignments
 					_swapByIdx(a, i - 1, i);
+					counter.assign();// assignment
 					newN = i;
 				}
+				counter.comp();// i < n -> comparison
+				counter.incDec();// i++ -> increment
 			}
+			counter.assign();// n = newN -> assignment
 			n = newN;
+
+			counter.comp();// n > 1 -> comparison
+		}
+		return counter.getCount();
+	}
+
+	public static <T extends Comparable<T>> int quickSort(T[] a) {
+		var counter = new OperationCounter();
+		_quickSort(a, 0, a.length - 1, counter);
+		System.out.println(counter.getCount());
+		return counter.getCount();
+	}
+
+	private static <T extends Comparable<T>> void _quickSort(T[] a, int lo, int hi, OperationCounter counter) {
+  	counter.comp();// comparison
+		if (lo < hi) {
+			counter.assign();// assignment + _partitions counter
+    	var p = _partition(a, lo, hi, counter);
+		
+			counter.comp();// comparison
+			if (p > 0) {
+				// + recursions counter
+				_quickSort(a, lo, p - 1, counter);
+			}
+			// + recursions counter
+    	_quickSort(a, p + 1, hi, counter);
 		}
 	}
 
-	public static <T extends Comparable<T>> void quickSort(T[] a) {
-		_quickSort(a, 0, a.length - 1);
-	}
+	private static <T extends Comparable<T>> int _partition(T[] a, int lo, int hi, OperationCounter counter) {
+		var pivot = a[hi];
+		var i = lo;
 
-	private static <T extends Comparable<T>> void _quickSort(T[] a, int lo, int hi) {
-  if (lo < hi) {
-    var p = _partition(a, lo, hi);
-		if (p > 0) {
-			_quickSort(a, lo, p - 1);
+		counter.assign(); counter.assign(); counter.assign();// pivot = a[hi], i = lo, j = hi; three assignments
+		for (var j = lo; j <= hi; j++) {
+			counter.comp();// comparison
+			if (a[j].compareTo(pivot) < 0) {
+				counter.assign(); counter.assign(); counter.assign();// swap -> 3 assignments
+				counter.incDec();// increment
+				_swapByIdx(a, i++, j);
+			}
+			counter.comp();// j <= hi comparison
+			counter.incDec();// j++ increment
 		}
-    _quickSort(a, p + 1, hi);
+		counter.assign(); counter.assign(); counter.assign();// swap
+		_swapByIdx(a, i, hi);
+		return i;
 	}
-}
-
-	private static <T extends Comparable<T>> int _partition(T[] a, int lo, int hi) {
-	var pivot = a[hi];
-	var i = lo;
-	for (var j = lo; j <= hi; j++) {
-		if (a[j].compareTo(pivot) < 0) {
-			_swapByIdx(a, i++, j);
-		}
-	}
-	_swapByIdx(a, i, hi);
-	return i;
-}
 
 	private static <T> void _swapByIdx(T[] a, int i, int j) {
 		T t    = a[i];
