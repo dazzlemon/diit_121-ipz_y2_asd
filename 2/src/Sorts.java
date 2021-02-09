@@ -49,7 +49,6 @@ public class Sorts {
 	public static <T extends Comparable<T>> int quickSort(T[] a) {
 		var counter = new OperationCounter();
 		_quickSort(a, 0, a.length - 1, counter);
-		System.out.println(counter.getCount());
 		return counter.getCount();
 	}
 

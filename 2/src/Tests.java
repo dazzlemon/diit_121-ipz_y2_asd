@@ -5,7 +5,7 @@ import java.util.Random;
 public class Tests {
 	public static void fill(Integer[] a) {
 		var r = new Random();
-		//for (var i : a) {
+		//for (var i : a) {//idk why this doesnt work
 		//	i = r.nextInt();
 		for (int i = 0; i < a.length; i++) {
 			a[i] = r.nextInt();
