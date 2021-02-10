@@ -13,9 +13,18 @@ data = np.array([
 
 for s, l, f in data[[0, 1, 2]]:
     x = np.arange(0, len(s))
-    popt, pcov = curve_fit(f, x, s)
-    plt.scatter(x, s, label=l % tuple(popt))
-    plt.plot(x, f(x, *popt), 'r--')
+    fitargs, cov = curve_fit(f, x, s)
+
+    fitdata = f(x, *fitargs)
+    abs_err = s - fitdata
+
+    sqr_err           = np.square(abs_err)
+    mean_sqr_err      = np.mean(sqr_err)
+    root_mean_sqr_err = np.sqrt(mean_sqr_err)
+    r2                = 1.0 - (np.var(abs_err) / np.var(fitdata))
+
+    plt.scatter(x, s, label=l % tuple(fitargs) + ' R2 = %5.3f' % r2)
+    plt.plot(x, fitdata, 'r--')
 
 plt.legend(loc='upper left')
 plt.title('Sorting algorithms')
