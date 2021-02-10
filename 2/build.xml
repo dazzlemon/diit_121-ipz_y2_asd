@@ -1,0 +1,7 @@
+<project default="asd2">
+    <target name="asd2">
+        <mkdir dir="bin"/>
+        <jar jarfile="lib/py4j.jar"/>
+        <javac srcdir="src" destdir="bin"/>
+    </target>
+</project>
