@@ -1,4 +1,4 @@
-package src;
+package src.java;
 
 public class Sorts {
 	public static <T extends Comparable<T>> int gnomeSort(T[] a) {

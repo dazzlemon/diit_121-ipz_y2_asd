@@ -1,4 +1,4 @@
-package src;
+package src.java;
 
 public class OperationCounter {
 	private int _counter = 0;

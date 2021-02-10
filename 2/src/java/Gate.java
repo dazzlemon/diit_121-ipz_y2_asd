@@ -1,4 +1,4 @@
-package src;
+package src.java;
 
 import py4j.GatewayServer;
 
