@@ -1,7 +1,7 @@
 #!/bin/bash
 
-javac -cp .:lib/py4j.jar -d bin src/java/Gate.java
-javac -cp . -d bin src/java/Main.java
-javac -cp . -d bin src/java/OperationCounter.java
-javac -cp . -d bin src/java/Sorts.java
-javac -cp . -d bin src/java/Tests.java
+javac -cp src/java:lib/py4j.jar -d bin/java src/java/asd2/Gate.java \
+	src/java/asd2/Main.java \
+	src/java/asd2/OperationCounter.java \
+	src/java/asd2/Sorts.java \
+	src/java/asd2/Tests.java

@@ -5,7 +5,7 @@ from scipy.optimize import curve_fit
 
 gateway = JavaGateway()
 
-tests = gateway.jvm.src.java.Tests
+tests = gateway.jvm.asd2.Tests
 # [1:] is to skip the first element which is zero(otherwise log cant be calculated)
 data = np.array([
     (np.array(tests.quickSort())[1:], 'quicksort; %5.3f * n * log(n)', lambda n, c: c * n * np.log(n)),

@@ -1,4 +1,4 @@
-package src.java;
+package asd2;
 
 import java.util.Random;
 import java.util.Arrays;
