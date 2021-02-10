@@ -5,13 +5,13 @@ from scipy.optimize import curve_fit
 
 gateway = JavaGateway()
 
-# [1:] is to skip the first element which is zero
+# [1:] is to skip the first element which is zero(otherwise log cant be calculated)
 data = np.array([
     (np.array(gateway.jvm.src.Tests.quickSort())[1:], 'quicksort; %5.3f * n * log(n)', lambda n, c: c * n * np.log(n)),
     (np.array(gateway.jvm.src.Tests.bubbleSort())[1:], 'bubblesort; %5.3f * n^2', lambda n, c: c * n * n),
     (np.array(gateway.jvm.src.Tests.gnomeSort())[1:], 'gnomesort; %5.3f * n^2', lambda n, c: c * n * n)
 ], dtype=object)
- 
+
 for s, l, f in data[[0, 1, 2]]:
     x = np.arange(1, len(s) + 1)
     fitargs, cov = curve_fit(f, x, s)
