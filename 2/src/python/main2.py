@@ -5,16 +5,16 @@ from scipy.optimize import curve_fit
 from sklearn.metrics import r2_score
 
 gateway = JavaGateway()
-
 tests = gateway.jvm.asd2.Tests
-# [1:] is to skip the first element which is zero(otherwise log cant be calculated)
-data = np.array([
-    (np.array(tests.quickSort())[1:], 'quicksort; %5.3f * n * log(n)', lambda n, c: c * n * np.log(n)),
-    (np.array(tests.bubbleSort())[1:], 'bubblesort; %5.3f * n^2', lambda n, c: c * n * n),
-    (np.array(tests.gnomeSort())[1:], 'gnomesort; %5.3f * n^2', lambda n, c: c * n * n)
-], dtype=object)
+
+data = [
+    (tests.quickSort(), 'quicksort; %5.3f * n * log(n)', lambda n, c: c * n * np.log(n)),
+    (tests.bubbleSort(), 'bubblesort; %5.3f * n^2', lambda n, c: c * n * n),
+    (tests.gnomeSort(), 'gnomesort; %5.3f * n^2', lambda n, c: c * n * n)
+]
 
 for s, l, f in data:
+    s = np.array(s)[1:]# [1:] is to skip the first element which is zero(otherwise log cant be calculated)
     x = np.arange(1, len(s) + 1)
     fitargs, cov = curve_fit(f, x, s)
     fitdata = f(x, *fitargs)
