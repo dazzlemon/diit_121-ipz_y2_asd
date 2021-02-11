@@ -14,7 +14,7 @@ data = [
 ]
 
 for s, l, f in data:
-    s = np.array(s)[1:]# [1:] is to skip the first element which is zero(otherwise log cant be calculated)
+    s = np.array(s)
     x = np.arange(1, len(s) + 1)
     fitargs, cov = curve_fit(f, x, s)
     fitdata = f(x, *fitargs)

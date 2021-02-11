@@ -1,5 +1,7 @@
 package asd2;
-
+/**
+ * Class to count operations in algoritm.
+ */
 public class OperationCounter {
 	private int _counter = 0;
 	private int _incDecCost = 1;

@@ -6,11 +6,16 @@ import java.io.PrintStream;
 import java.io.FileOutputStream;
 
 public class Main {
+	/**
+	 * Prints space separeted elements of a to System.out;
+	 * @param a array to print
+	 */
 	public static void print(int[] a) {
 		System.out.println(Arrays.stream(a)
 		                  .mapToObj(String::valueOf)
 		                  .collect(Collectors.joining(" ")));
 	}
+
 	public static void main(String[] args) {
 		var qs = Tests.quickSort();
 		var bs = Tests.bubbleSort();
