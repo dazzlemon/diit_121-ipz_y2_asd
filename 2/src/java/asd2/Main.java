@@ -8,8 +8,8 @@ import java.io.FileOutputStream;
 public class Main {
 	public static void print(int[] a) {
 		System.out.println(Arrays.stream(a)
-											.mapToObj(String::valueOf)
-											.collect(Collectors.joining(" ")));
+		                  .mapToObj(String::valueOf)
+		                  .collect(Collectors.joining(" ")));
 	}
 	public static void main(String[] args) {
 		var qs = Tests.quickSort();
