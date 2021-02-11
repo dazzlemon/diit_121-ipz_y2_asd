@@ -62,7 +62,7 @@ public class Sorts {
 		counter.jmp();// if
 		if (lo < hi) {
 			counter.assign();// assignment + _partitions counter
-    	var p = _partition(a, lo, hi, counter);
+			var p = _partition(a, lo, hi, counter);
 			counter.jmp();// function
 	
 			counter.jmp();// if
