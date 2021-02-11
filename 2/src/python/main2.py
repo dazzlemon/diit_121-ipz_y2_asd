@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from py4j.java_gateway import JavaGateway
 from scipy.optimize import curve_fit
+from sklearn.metrics import r2_score
 
 gateway = JavaGateway()
 
@@ -13,12 +14,11 @@ data = np.array([
     (np.array(tests.gnomeSort())[1:], 'gnomesort; %5.3f * n^2', lambda n, c: c * n * n)
 ], dtype=object)
 
-for s, l, f in data[[0, 1, 2]]:
+for s, l, f in data:
     x = np.arange(1, len(s) + 1)
     fitargs, cov = curve_fit(f, x, s)
     fitdata = f(x, *fitargs)
-    abs_err = s - fitdata
-    r2      = 1.0 - (np.var(abs_err) / np.var(fitdata))
+    r2 = r2_score(s, fitdata)
 
     plt.scatter(x, s, label=l % tuple(fitargs) + '; R2 = %5.3f' % r2)
     plt.plot(x, fitdata, 'r--')
