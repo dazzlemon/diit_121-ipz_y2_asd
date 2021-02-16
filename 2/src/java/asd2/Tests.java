@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Arrays;
 
 public class Tests {
+	private static final int LOOPS = 64;
+
 	public static void fill(Integer[] a) {
 		var r = new Random();
 		//for (var i : a) {//idk why this doesnt work
@@ -14,31 +16,49 @@ public class Tests {
 	}
 
 	public static int[] quickSort() {
-		int[] res = new int[1000];
+		int[] res = new int[100];
 		for (int i = 1; i < res.length; i++) {
 			var a = new Integer[i + 1];
-			fill(a);
-			res[i] = Sorts.quickSort(a);
+			
+			int sum = 0;
+			for (int j = 0; j < LOOPS; j++) {
+				fill(a);
+				sum += Sorts.quickSort(a);
+			}
+
+			res[i] = sum / LOOPS;
 		}
 		return res;
 	}
 
 	public static int[] bubbleSort() {
-		int[] res = new int[1000];
+		int[] res = new int[100];
 		for (int i = 1; i < res.length; i++) {
 			var a = new Integer[i + 1];
-			fill(a);
-			res[i] = Sorts.bubbleSort(a);
+			
+			int sum = 0;
+			for (int j = 0; j < LOOPS; j++) {
+				fill(a);
+				sum += Sorts.bubbleSort(a);
+			}
+
+			res[i] = sum / LOOPS;
 		}
 		return res;
 	}
 
 	public static int[] gnomeSort() {
-		int[] res = new int[1000];
+		int[] res = new int[100];
 		for (int i = 1; i < res.length; i++) {
 			var a = new Integer[i + 1];
-			fill(a);
-			res[i] = Sorts.gnomeSort(a);
+			
+			int sum = 0;
+			for (int j = 0; j < LOOPS; j++) {
+				fill(a);
+				sum += Sorts.gnomeSort(a);
+			}
+
+			res[i] = sum / LOOPS;
 		}
 		return res;
 	}
