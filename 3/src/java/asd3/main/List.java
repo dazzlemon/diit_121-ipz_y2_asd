@@ -1,4 +1,4 @@
-package asd3;
+package asd3.main;
 
 public class List <E> {
 	public boolean isEmpty() {

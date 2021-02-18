@@ -1,4 +1,4 @@
-package asd3;
+package asd3.main;
 
 public class PriorityQueue <E extends Comparable<E>> {
 	private List<E> list;	
