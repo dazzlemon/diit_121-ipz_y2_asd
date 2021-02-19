@@ -23,7 +23,23 @@ public class PriorityQueueTest implements ITest {
 	
 	
 	private void addTest() {
-		
+		var pq = new PriorityQueue<Integer>();
+		pq.add(7);
+		pq.add(3);
+		pq.add(2);
+		pq.add(1);
+		pq.add(6);
+		pq.add(8);
+		pq.add(4);
+		pq.add(5);
+		pq.add(9);
+		var str  = "123456789";
+		var str_ = "";
+		System.out.println(pq.isEmpty());
+		while (!pq.isEmpty()) {
+			str_ += pq.poll();
+		}
+		assert str.compareTo(str_) == 0: this.failMessage("PriorityQueue::add", str, str_);
 	}
 	
 	
