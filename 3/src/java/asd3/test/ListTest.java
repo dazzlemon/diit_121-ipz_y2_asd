@@ -9,7 +9,7 @@ interface Test {
 class ListTest1 implements Test {
 	public void execute() {
 		var list = new List<Integer>();
-		assert(list.isEmpty()): "Test not passed: List::isEmpty()";
+		assert list.isEmpty(): "Test not passed: List::isEmpty()";
 	}
 }
 
