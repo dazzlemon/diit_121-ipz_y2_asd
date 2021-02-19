@@ -2,7 +2,7 @@ package asd3.test;
 
 import asd3.main.List;
 
-class ListTest implements ITest {
+public class ListTest implements ITest {
 	public void execute() {
 		this.isEmptyTest();	
 		this.sizeTest();
