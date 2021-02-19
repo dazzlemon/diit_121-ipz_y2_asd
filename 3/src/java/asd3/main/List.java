@@ -49,7 +49,7 @@ public class List <E> {
 			this.add(e);
 		} else {	
 			var node = this.head;
-			for (int i = 0; i < index; i++) {
+			for (int i = 0; i < index - 1; i++) {
 				node = node.next;
 			}
 			node.next = new Node(node.next, e);

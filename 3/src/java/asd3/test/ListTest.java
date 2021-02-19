@@ -45,6 +45,19 @@ class ListTest implements ITest {
 
 
 	public void addIdxTest() {
-
+		var list = new List<Integer>();
+		list.add(-1);
+		for (int i = 0; i < 10; i++) {
+			list.add(1, i);
+			var str = "";
+			for (int j = i; j >= 0; j--) {
+				str += j;
+			}
+			var str_ = "";
+			for (int j = 1; j < list.size(); j++) {
+				str_ += list.get(j);
+			}
+			assert str.compareTo(str_) == 0: "Test not passed: List::add -> Expected: " + str + ", Actual: " + str_; 
+		}
 	}
 }
