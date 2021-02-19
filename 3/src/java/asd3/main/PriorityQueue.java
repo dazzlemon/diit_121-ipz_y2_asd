@@ -1,7 +1,7 @@
 package asd3.main;
 
 public class PriorityQueue <E extends Comparable<E>> {
-	private List<E> list;	
+	private List<E> list = new List<E>();	
 
 
 	public boolean isEmpty() {
@@ -10,9 +10,13 @@ public class PriorityQueue <E extends Comparable<E>> {
 
 
 	public void add(E e) {
-		for (int i = 0; i < list.size(); i++) {
-			if (e.compareTo(list.get(i)) < 0) {
-				list.add(i, e);
+		if (this.isEmpty()) {
+			list.add(e);
+		} else {
+			for (int i = 0; i < list.size(); i++) {
+				if (e.compareTo(list.get(i)) < 0) {
+					list.add(i, e);
+				}
 			}
 		}
 	}
