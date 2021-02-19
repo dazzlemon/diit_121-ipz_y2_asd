@@ -8,10 +8,11 @@ class ListTest implements ITest {
 		this.sizeTest();
 		this.addTest();
 		this.addIdxTest();
+		this.getTest();
 	}
 
 
-	public void isEmptyTest() {
+	private void isEmptyTest() {
 		var list = new List<Integer>();
 		assert list.isEmpty(): "Test not passed: List::isEmpty() -> true";
 
@@ -20,7 +21,7 @@ class ListTest implements ITest {
 	}
 
 
-	public void sizeTest() {
+	private void sizeTest() {
 		var list = new List<Integer>();
 		for (int i = 0; i < 10; i++) {
 			list.add(i, i);
@@ -29,7 +30,7 @@ class ListTest implements ITest {
 	}
 
 
-	public void addTest() {
+	private void addTest() {
 		var list = new List<Integer>();
 		var str  = "";
 		for (int i = 0; i < 10; i++) {
@@ -44,7 +45,7 @@ class ListTest implements ITest {
 	}
 
 
-	public void addIdxTest() {
+	private void addIdxTest() {
 		var list = new List<Integer>();
 		list.add(-1);
 		for (int i = 0; i < 10; i++) {
@@ -59,5 +60,17 @@ class ListTest implements ITest {
 			}
 			assert str.compareTo(str_) == 0: "Test not passed: List::add -> Expected: " + str + ", Actual: " + str_; 
 		}
+	}
+
+
+	private void getTest() {
+		var list = new List<Integer>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		for (int i = 0; i < list.size(); i++) {
+			var i_ = list.get(i);
+			assert i_ == i: "Test failed: List::get -> Expected: " + i + ", Actual: " + i_;
+		}	
 	}
 }
