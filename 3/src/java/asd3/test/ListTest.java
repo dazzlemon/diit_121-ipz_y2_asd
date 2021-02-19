@@ -9,6 +9,7 @@ class ListTest implements ITest {
 		this.addTest();
 		this.addIdxTest();
 		this.getTest();
+		this.removeTest();
 	}
 
 
@@ -76,6 +77,22 @@ class ListTest implements ITest {
 			assert i_ == i: failMessage("List::get", i, i_);
 		}	
 	}
+
+
+	private void removeTest() {
+		var list = new List<Integer>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.remove(5);
+		var str = "012346789";
+		var str_ = "";
+		for (int i = 0; i < list.size(); i++) {
+			str_ += list.get(i);
+		}
+		assert str.compareTo(str_) == 0: failMessage("List::remove", str, str_);
+	}
+
 
 	private <T, E> String failMessage(String testSubject, T expectedValue, E actualValue) {
 		var a = String.valueOf(actualValue);
