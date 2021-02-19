@@ -14,10 +14,12 @@ class ListTest implements ITest {
 
 	private void isEmptyTest() {
 		var list = new List<Integer>();
-		assert list.isEmpty(): "Test not passed: List::isEmpty() -> true";
+		var e = list.isEmpty();
+		assert e: failMessage("List::isEmpty()", true, e);
 
 		list.add(0, 0);
-		assert list.isEmpty() == false: "Test not passed: List::isEmpty() -> false";
+		e = list.isEmpty();
+		assert !e: failMessage("List::isEmpty()", false, e);
 	}
 
 
@@ -25,7 +27,8 @@ class ListTest implements ITest {
 		var list = new List<Integer>();
 		for (int i = 0; i < 10; i++) {
 			list.add(i, i);
-			assert list.size() == (i + 1): "Test not passed: List::size() -> " + (i + 1);
+			var sz = list.size();
+			assert sz == (i + 1): failMessage("List::size()", i + 1, sz);
 		}
 	}
 
@@ -40,7 +43,7 @@ class ListTest implements ITest {
 			for (int j = 0; j < list.size(); j++) {
 				str_ += list.get(j);
 			}
-			assert str.compareTo(str_) == 0: "Test not passed: List::add -> Expected: " + str + ", Actual: " + str_; 
+			assert str.compareTo(str_) == 0: this.failMessage("List::add", str, str_); 
 		}
 	}
 
@@ -58,7 +61,7 @@ class ListTest implements ITest {
 			for (int j = 1; j < list.size(); j++) {
 				str_ += list.get(j);
 			}
-			assert str.compareTo(str_) == 0: "Test not passed: List::add -> Expected: " + str + ", Actual: " + str_; 
+			assert str.compareTo(str_) == 0: failMessage("List::add", str, str_);
 		}
 	}
 
@@ -70,7 +73,13 @@ class ListTest implements ITest {
 		}
 		for (int i = 0; i < list.size(); i++) {
 			var i_ = list.get(i);
-			assert i_ == i: "Test failed: List::get -> Expected: " + i + ", Actual: " + i_;
+			assert i_ == i: failMessage("List::get", i, i_);
 		}	
+	}
+
+	private <T, E> String failMessage(String testSubject, T expectedValue, E actualValue) {
+		var a = String.valueOf(actualValue);
+		var e = String.valueOf(expectedValue);
+		return "Test failed: " + testSubject + " -> Expected: " + e + ", Actual: " + a;
 	}
 }
