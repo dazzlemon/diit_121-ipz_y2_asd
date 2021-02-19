@@ -11,7 +11,7 @@ public class PriorityQueue <E extends Comparable<E>> {
 
 	public void add(E e) {
 		for (int i = 0; i < list.size(); i++) {
-			if (e.compareTo(list[i]) < 0) {
+			if (e.compareTo(list.get(i)) < 0) {
 				list.add(i, e);
 			}
 		}

@@ -1,0 +1,6 @@
+javac -cp src/java -d bin/java src/java/asd3/main/Main.java \
+	src/java/asd3/main/List.java \
+	src/java/asd3/main/PriorityQueue.java \
+	src/java/asd3/main/Message.java \
+	src/java/asd3/main/Post.java \
+	src/java/asd3/test/ListTest.java
