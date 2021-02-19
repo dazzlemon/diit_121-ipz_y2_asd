@@ -29,8 +29,26 @@ public class List <E> {
 		return size;
 	}
 
+	
+	public void add(E e) {
+		var newLast = new Node(null, e);
+		if (this.isEmpty()) {
+			this.head = newLast;
+		} else {
+			var node = this.head;
+			while (node.next != null) {
+				node = node.next;
+			}
+			node.next = newLast;
+		}
+	}
+
 
 	public void add(int index, E e) {
+		if (index == this.size()) {
+			this.add(e);
+		}	
+
 		var node = this.head;
 		for (int i = 0; i < index; i++) {
 			node = node.next;
