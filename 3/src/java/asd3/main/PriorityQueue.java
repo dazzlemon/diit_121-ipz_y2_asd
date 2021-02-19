@@ -5,29 +5,29 @@ public class PriorityQueue <E extends Comparable<E>> {
 
 
 	public boolean isEmpty() {
-		return list.isEmpty();	
+		return this.list.isEmpty();	
 	}
 
 
 	public void add(E e) {
 		if (this.isEmpty()) {
-			list.add(e);
+			this.list.add(e);
 		} else {
-			for (int i = 0; i < list.size(); i++) {
-				if (e.compareTo(list.get(i)) < 0) {
-					list.add(i, e);
-				}
+			int i = 0;
+			while (i < this.list.size() && e.compareTo(list.get(i)) < 0) {
+				i++;
 			}
+			this.list.add(i, e);
 		}
 	}
 
 
 	public E peek() {
-		return list.get(list.size() - 1);
+		return this.list.get(list.size() - 1);
 	}
 
 
 	public E poll() {
-		return list.remove(list.size() - 1);
+		return this.list.remove(list.size() - 1);
 	}
 }

@@ -67,6 +67,12 @@ public class List <E> {
 
 
 	public E remove(int index) {
+		if (index == 0) {
+			var data = this.head.data;
+			head = null;
+			return data;
+		}
+
 		var node = this.head;
 		for (int i = 0; i < index - 1; i++) {
 			node = node.next;
