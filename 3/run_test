@@ -1,1 +1,1 @@
-java -ea -cp bin/java asd3/test/ListTest
+java -ea -cp bin/java asd3/test/Test
