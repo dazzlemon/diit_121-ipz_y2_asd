@@ -47,13 +47,13 @@ public class List <E> {
 	public void add(int index, E e) {
 		if (index == this.size()) {
 			this.add(e);
-		}	
-
-		var node = this.head;
-		for (int i = 0; i < index; i++) {
-			node = node.next;
+		} else {	
+			var node = this.head;
+			for (int i = 0; i < index; i++) {
+				node = node.next;
+			}
+			node.next = new Node(node.next, e);
 		}
-		node.next = new Node(node.next, e);
 	}
 
 
