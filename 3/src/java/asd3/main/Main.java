@@ -40,12 +40,12 @@ class PostManager {
 			this.response = String.format("from: %s\n", msg.from)
 			              + String.format("to: %s\n", msg.to)
 			              + String.format("to: %s\n", msg.body);
-		} else if (!this.sendMatch() && this.query.compareTo("help") == 0) {	
+		} else if (this.query.compareTo("help") == 0) {	
 			this.response = "Commands:\n"
 			              + "\tquit\n"
 			              + "\treceive\n"
 			              + "\tsend \"<from>\" \"<to>\" \"<body>\" <priority>";
-		} else {
+		} else if (!this.sendMatch()) {
 			this.response = String.format("<%s> is incorrect command, try \'help\'", this.query);
 		}
 	}
@@ -57,7 +57,7 @@ class PostManager {
 		var isMatch = m.matches();
 		if (isMatch) {
 			var msg = new Message(
-				m.group(1),// from
+				m.group(1),// from 
 				m.group(2),// to
 				m.group(3),// body
 				Integer.parseInt(m.group(4))// priority
