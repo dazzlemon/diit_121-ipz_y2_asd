@@ -1,6 +1,9 @@
 package asd3.main;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Main {
 	public static void main(String[] args) {
@@ -16,7 +19,6 @@ class PostManager {
 	private String response;
 	private Scanner in = new Scanner(System.in);
 
-
 	public void run() {
 		this.isRunning = true;
 		do {
@@ -29,16 +31,29 @@ class PostManager {
 
 
 	public void resolveQuery() {
-		// receive
-		this.response = "some";
+		if (this.query.compareTo("receive") == 0) {
+			// poll from post
+			this.response = "some";
+		} else if (!this.sendMatch() && this.query.compareTo("help") == 0) {	
+			this.response = "some";	
+		} else {
+			// incorrect command 
+			this.response = "some";
+		}
+	}
 
+	public boolean sendMatch() {
 		// send "<from>" "<to>" "<body>"
+		var sendPattern = Pattern.compile("^send \"(.+)\" \"(.+)\" \"(.+)\"$");
+		var sendMatcher = sendPattern.matcher(this.query);
+		var isMatch = sendMatcher.matches();
+		if (isMatch) {
+			var from = sendMatcher.group(1);
+			var to   = sendMatcher.group(2);
+			var body = sendMatcher.group(3);
+			// Post::send 
 		this.response = "";
-
-		// help
-		this.response = "some";
-
-		// incorrect command 
-		this.response = "some";
+		}
+		return isMatch;
 	}
 }
