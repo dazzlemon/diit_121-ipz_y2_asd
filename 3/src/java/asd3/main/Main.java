@@ -18,6 +18,7 @@ class PostManager {
 	private boolean isRunning;
 	private String response;
 	private Scanner in = new Scanner(System.in);
+	private Post post = new Post();
 
 	public void run() {
 		this.isRunning = true;
@@ -32,27 +33,33 @@ class PostManager {
 
 	public void resolveQuery() {
 		if (this.query.compareTo("receive") == 0) {
-			// TODO: poll from post
-			this.response = "some";
+			var msg = post.receive();
+			this.response = String.format("from: %s\n", msg.from)
+			              + String.format("to: %s\n", msg.to)
+			              + String.format("to: %s\n", msg.body);
 		} else if (!this.sendMatch() && this.query.compareTo("help") == 0) {	
-			this.response = "some";//TODO	
+			this.response = "Commands:\n"
+			              + "\treceive\n"
+			              + "\tsend \"<from>\" \"<to>\" \"<body>\" <priority>\n";
 		} else {
-			// TODO: incorrect command 
-			this.response = "some";
+			this.response = "Incorrect command, try \'help\'";
 		}
 	}
+
 
 	public boolean sendMatch() {
 		var sendPattern = Pattern.compile("^send \"(.+)\" \"(.+)\" \"(.+)\" (\\d+)$");
 		var sendMatcher = sendPattern.matcher(this.query);
 		var isMatch = sendMatcher.matches();
 		if (isMatch) {
-			var from     = sendMatcher.group(1);
-			var to       = sendMatcher.group(2);
-			var body     = sendMatcher.group(3);
-			var priority = sendMatcher.group(4);
-			// TODO: Post::send 
-		this.response = "";
+			var msg = new Message(
+				sendMatcher.group(1),// from
+				sendMatcher.group(2),// to
+				sendMatcher.group(3),// body
+				Integer.parseInt(sendMatcher.group(4))// priority
+			);
+			post.send(msg);
+			this.response = "";
 		}
 		return isMatch;
 	}
