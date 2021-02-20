@@ -46,6 +46,7 @@ class PostManager {
 			              + "\treceive\n"
 			              + "\tsend \"<from>\" \"<to>\" \"<body>\" <priority>";
 		} else {
+			System.out.printf("\n%s\n", this.query);
 			this.response = "Incorrect command, try \'help\'";
 		}
 	}
