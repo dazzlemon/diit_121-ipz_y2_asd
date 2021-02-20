@@ -34,35 +34,43 @@ public class ListTest implements ITest {
 	}
 
 
+	private void addIdxTest() {
+		// setup
+		var list = new List<Integer>();
+		list.add(0, 2);// 2
+
+		// insert at 0
+		list.add(0, 0);// 0 2
+
+		// insert at 1
+		list.add(1, 1);// 0 1 2
+
+		// insert at size
+		list.add(list.size(), 4);// 0 1 2 4
+		
+		// insert at size - 1
+		list.add(list.size() - 1, 3);// 0 1 2 3 4
+
+		var str  = "01234";
+		var str_ = "";
+		for (int i = 0; i < list.size(); i++) {
+			str_ += list.get(i);
+		}
+		assert str.compareTo(str_) == 0: failMessage("List::add", str, str_);
+	}
+
+
 	private void addTest() {
 		var list = new List<Integer>();
 		var str  = "";
 		for (int i = 0; i < 10; i++) {
-			list.add(i, i);
+			list.add(i);
 			str += i;
 			var str_ = "";
 			for (int j = 0; j < list.size(); j++) {
 				str_ += list.get(j);
 			}
 			assert str.compareTo(str_) == 0: this.failMessage("List::add", str, str_); 
-		}
-	}
-
-
-	private void addIdxTest() {
-		var list = new List<Integer>();
-		list.add(-1);
-		for (int i = 0; i < 10; i++) {
-			list.add(1, i);
-			var str = "";
-			for (int j = i; j >= 0; j--) {
-				str += j;
-			}
-			var str_ = "";
-			for (int j = 1; j < list.size(); j++) {
-				str_ += list.get(j);
-			}
-			assert str.compareTo(str_) == 0: failMessage("List::add", str, str_);
 		}
 	}
 
