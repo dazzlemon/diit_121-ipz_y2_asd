@@ -88,12 +88,22 @@ public class ListTest implements ITest {
 
 
 	private void removeTest() {
+		// setup
 		var list = new List<Integer>();
 		for (int i = 0; i < 10; i++) {
 			list.add(i);
 		}
-		list.remove(5);
-		var str = "012346789";
+		
+		// remove at 0
+		list.remove(0);// 1 2 3 4 5 6 7 8 9
+		
+		// remove at 1
+		list.remove(1);// 1 3 4 5 6 7 8 9
+
+		// remove at size - 1
+		list.remove(list.size() - 1);// 1 3 4 5 6 7 8
+
+		var str = "1345678";
 		var str_ = "";
 		for (int i = 0; i < list.size(); i++) {
 			str_ += list.get(i);

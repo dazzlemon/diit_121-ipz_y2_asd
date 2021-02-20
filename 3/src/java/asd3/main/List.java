@@ -71,7 +71,7 @@ public class List <E> {
 	public E remove(int index) {
 		if (index == 0) {
 			var data = this.head.data;
-			head = null;
+			head = head.next;
 			return data;
 		}
 
