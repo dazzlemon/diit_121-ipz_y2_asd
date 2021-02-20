@@ -32,18 +32,17 @@ class PostManager {
 
 	public void resolveQuery() {
 		if (this.query.compareTo("receive") == 0) {
-			// poll from post
+			// TODO: poll from post
 			this.response = "some";
 		} else if (!this.sendMatch() && this.query.compareTo("help") == 0) {	
-			this.response = "some";	
+			this.response = "some";//TODO	
 		} else {
-			// incorrect command 
+			// TODO: incorrect command 
 			this.response = "some";
 		}
 	}
 
 	public boolean sendMatch() {
-		// send "<from>" "<to>" "<body>"
 		var sendPattern = Pattern.compile("^send \"(.+)\" \"(.+)\" \"(.+)\"$");
 		var sendMatcher = sendPattern.matcher(this.query);
 		var isMatch = sendMatcher.matches();
@@ -51,7 +50,7 @@ class PostManager {
 			var from = sendMatcher.group(1);
 			var to   = sendMatcher.group(2);
 			var body = sendMatcher.group(3);
-			// Post::send 
+			// TODO: Post::send 
 		this.response = "";
 		}
 		return isMatch;
