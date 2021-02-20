@@ -62,7 +62,17 @@ public class PriorityQueueTest implements ITest {
 	
 	
 	private void pollTest() {
-	
+	var pq = new PriorityQueue<Integer>();
+		for (int i = 0; i < 10; i++) {
+			pq.add(i);
+		}
+
+		var str  = "9876543210";
+		var str_ = "";
+		while (!pq.isEmpty()) {
+			str_ += pq.poll();
+		}
+		assert str.compareTo(str_) == 0: failMessage("PriorityQueue::poll", str, str_);
 	}
 
 
