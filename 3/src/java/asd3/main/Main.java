@@ -43,13 +43,14 @@ class PostManager {
 	}
 
 	public boolean sendMatch() {
-		var sendPattern = Pattern.compile("^send \"(.+)\" \"(.+)\" \"(.+)\"$");
+		var sendPattern = Pattern.compile("^send \"(.+)\" \"(.+)\" \"(.+)\" (\\d+)$");
 		var sendMatcher = sendPattern.matcher(this.query);
 		var isMatch = sendMatcher.matches();
 		if (isMatch) {
-			var from = sendMatcher.group(1);
-			var to   = sendMatcher.group(2);
-			var body = sendMatcher.group(3);
+			var from     = sendMatcher.group(1);
+			var to       = sendMatcher.group(2);
+			var body     = sendMatcher.group(3);
+			var priority = sendMatcher.group(4);
 			// TODO: Post::send 
 		this.response = "";
 		}
