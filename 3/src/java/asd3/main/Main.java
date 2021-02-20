@@ -32,15 +32,19 @@ class PostManager {
 
 
 	public void resolveQuery() {
-		if (this.query.compareTo("receive") == 0) {
+		if (this.query.compareTo("quit") == 0) {
+			this.response = "";
+			this.isRunning = false;
+		} else if (this.query.compareTo("receive") == 0) {
 			var msg = post.receive();
 			this.response = String.format("from: %s\n", msg.from)
 			              + String.format("to: %s\n", msg.to)
 			              + String.format("to: %s\n", msg.body);
 		} else if (!this.sendMatch() && this.query.compareTo("help") == 0) {	
 			this.response = "Commands:\n"
+			              + "\tquit\n"
 			              + "\treceive\n"
-			              + "\tsend \"<from>\" \"<to>\" \"<body>\" <priority>\n";
+			              + "\tsend \"<from>\" \"<to>\" \"<body>\" <priority>";
 		} else {
 			this.response = "Incorrect command, try \'help\'";
 		}
