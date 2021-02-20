@@ -1,7 +1,7 @@
 package asd3.main;
 
 public class Post {
-	private PriorityQueue<Message> queue;
+	private PriorityQueue<Message> queue = new PriorityQueue<Message>();
 
 
 	public void send(Message m) {

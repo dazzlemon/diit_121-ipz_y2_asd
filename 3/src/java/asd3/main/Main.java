@@ -17,7 +17,7 @@ class PostManager {
 	private String query;
 	private boolean isRunning;
 	private String response;
-	private Scanner in = new Scanner(System.in);
+	private Scanner in = new Scanner(System.in).useDelimiter("\n");
 	private Post post = new Post();
 
 	public void run() {
@@ -52,15 +52,15 @@ class PostManager {
 
 
 	public boolean sendMatch() {
-		var sendPattern = Pattern.compile("^send \"(.+)\" \"(.+)\" \"(.+)\" (\\d+)$");
-		var sendMatcher = sendPattern.matcher(this.query);
-		var isMatch = sendMatcher.matches();
+		var p = Pattern.compile("send \"(.+)\" \"(.+)\" \"(.+)\" (\\d+)");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
 		if (isMatch) {
 			var msg = new Message(
-				sendMatcher.group(1),// from
-				sendMatcher.group(2),// to
-				sendMatcher.group(3),// body
-				Integer.parseInt(sendMatcher.group(4))// priority
+				m.group(1),// from
+				m.group(2),// to
+				m.group(3),// body
+				Integer.parseInt(m.group(4))// priority
 			);
 			post.send(msg);
 			this.response = "";

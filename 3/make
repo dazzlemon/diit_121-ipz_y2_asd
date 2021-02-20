@@ -5,4 +5,4 @@ javac -cp src/java -d bin/java src/java/asd3/main/Main.java \
 	src/java/asd3/main/Post.java \
 	src/java/asd3/test/Test.java \
 	src/java/asd3/test/ITest.java \
-	src/java/asd3/test/ListTest.java
+	src/java/asd3/test/ListTest.java -Xlint
