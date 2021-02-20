@@ -33,12 +33,11 @@ public class PriorityQueueTest implements ITest {
 		pq.add(4);
 		pq.add(5);
 		pq.add(9);
-		var str  = "123456789";
+		var str  = "987654321";
 		var str_ = "";
 		while (!pq.isEmpty()) {
 			str_ += pq.poll();
 		}
-		System.out.println(str_);
 		assert str.compareTo(str_) == 0: failMessage("PriorityQueue::add", str, str_);
 	}
 	

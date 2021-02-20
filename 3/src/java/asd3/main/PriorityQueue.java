@@ -13,9 +13,9 @@ public class PriorityQueue <E extends Comparable<E>> {
 		if (this.isEmpty()) {
 			this.list.add(e);
 		} else {
-			int i = 0;
-			while (i < this.list.size() && e.compareTo(list.get(i)) < 0) {
-				i++;
+			int i = this.list.size();
+			while (i > 0 && e.compareTo(this.list.get(i - 1)) < 0) {	
+				i--;
 			}
 			this.list.add(i, e);
 		}
@@ -23,11 +23,11 @@ public class PriorityQueue <E extends Comparable<E>> {
 
 
 	public E peek() {
-		return this.list.get(list.size() - 1);
+		return this.list.get(this.list.size() - 1);
 	}
 
 
 	public E poll() {
-		return this.list.remove(list.size() - 1);
+		return this.list.remove(this.list.size() - 1);
 	}
 }

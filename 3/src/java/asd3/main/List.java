@@ -47,6 +47,8 @@ public class List <E> {
 	public void add(int index, E e) {
 		if (index == this.size()) {
 			this.add(e);
+		} else if (index == 0) {
+			head = new Node(head, e);
 		} else {	
 			var node = this.head;
 			for (int i = 0; i < index - 1; i++) {
