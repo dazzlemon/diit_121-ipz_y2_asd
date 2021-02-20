@@ -23,17 +23,20 @@ public class PriorityQueueTest implements ITest {
 	
 	
 	private void addTest() {
+		// setup
 		var pq = new PriorityQueue<Integer>();
-		pq.add(7);
-		pq.add(3);
-		pq.add(2);
-		pq.add(1);
-		pq.add(6);
-		pq.add(8);
-		pq.add(4);
-		pq.add(5);
-		pq.add(9);
-		var str  = "987654321";
+		pq.add(5);// 5
+
+		// add top priority
+		pq.add(6);// 6 5
+
+		// add lowest priority
+		pq.add(3);// 6 5 3
+
+		// add middle priority
+		pq.add(4);// 6 5 4 3
+
+		var str  = "6543";
 		var str_ = "";
 		while (!pq.isEmpty()) {
 			str_ += pq.poll();
