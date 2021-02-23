@@ -8,8 +8,8 @@ public class List <E> {
 		}
 
 
-		public Node next = null;
-		public E data;
+		Node next;
+		E data;
 	}
 
 

@@ -30,4 +30,14 @@ public class PriorityQueue <E extends Comparable<E>> {
 	public E poll() {
 		return this.list.remove(this.list.size() - 1);
 	}
+
+
+	public E last() {
+		return this.list.get(0);
+	}
+
+
+	public int size() {
+		return this.list.size();
+	}
 }
