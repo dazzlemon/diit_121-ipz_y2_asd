@@ -25,7 +25,7 @@ public class Message implements Comparable<Message> {
 	@Override
 	public String toString() {
 		return String.format("from: %s\n", this.from)
-         + String.format("to: %s\n", this.to)
-         + String.format("to: %s\n", this.body);
+		     + String.format("to: %s\n", this.to)
+		     + String.format("to: %s\n", this.body);
 	}
 }
