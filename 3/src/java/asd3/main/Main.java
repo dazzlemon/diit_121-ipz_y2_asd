@@ -22,6 +22,7 @@ class PostManager {
 
 	public void run() {
 		this.isRunning = true;
+		System.out.println("see \'help\', to check out available commands");
 		do {
 			System.out.print("###POST###: ");
 			this.query = in.next();
@@ -31,12 +32,19 @@ class PostManager {
 	}
 
 
+	/**
+	 * Changes this.response according to this.query
+	 */
 	private void resolveQuery() {
 		if (this.query.compareTo("quit") == 0) {
 			this.response = "";
 			this.isRunning = false;
 		} else if (this.query.compareTo("receive") == 0) {
-			this.response = post.receive().toString();
+			if (this.post.isEmpty()) {
+				this.response = "Post it empty try to \'send\' first!(See \'help\')";
+			} else {
+				this.response = post.receive().toString();
+			}
 		} else if (this.query.compareTo("help") == 0) {	
 			this.response = "Commands:\n"
 			              + "\tquit\n"

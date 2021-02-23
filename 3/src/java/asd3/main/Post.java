@@ -12,4 +12,9 @@ public class Post {
 	public Message receive() {
 		return queue.poll();
 	}
+
+
+	public boolean isEmpty() {
+		return queue.isEmpty();
+	}
 }
