@@ -31,15 +31,12 @@ class PostManager {
 	}
 
 
-	public void resolveQuery() {
+	private void resolveQuery() {
 		if (this.query.compareTo("quit") == 0) {
 			this.response = "";
 			this.isRunning = false;
 		} else if (this.query.compareTo("receive") == 0) {
-			var msg = post.receive();
-			this.response = String.format("from: %s\n", msg.from)
-			              + String.format("to: %s\n", msg.to)
-			              + String.format("to: %s\n", msg.body);
+			this.response = post.receive().toString();
 		} else if (this.query.compareTo("help") == 0) {	
 			this.response = "Commands:\n"
 			              + "\tquit\n"
@@ -51,7 +48,11 @@ class PostManager {
 	}
 
 
-	public boolean sendMatch() {
+	/**
+	 * Checks if the query is correct <send> command,
+	 * if true resolves it and returns true
+	 */
+	private boolean sendMatch() {
 		var p = Pattern.compile("send \"(.+)\" \"(.+)\" \"(.+)\" (\\d+)");//^$ are included by matches()
 		var m = p.matcher(this.query);
 		var isMatch = m.matches();

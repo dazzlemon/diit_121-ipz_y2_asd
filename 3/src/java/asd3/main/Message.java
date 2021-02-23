@@ -20,4 +20,12 @@ public class Message implements Comparable<Message> {
 		     : this.priority < other.priority ? -1
 		                                      : 0;
 	}
+
+
+	@Override
+	public String toString() {
+		return String.format("from: %s\n", this.from)
+			   + String.format("to: %s\n", this.to)
+         + String.format("to: %s\n", this.body);
+	}
 }
