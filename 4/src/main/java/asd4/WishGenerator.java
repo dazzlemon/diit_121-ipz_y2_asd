@@ -4,18 +4,18 @@ import java.util.Random;
 
 public class WishGenerator {
     private Random r = new Random();
-    public Wish next() {
+    public WishType next() {
         switch (r.nextInt(4)) {
             case 0:
-                return Wish.TOY;
+                return WishType.TOY;
             case 1:
-                return Wish.GADGET;
+                return WishType.GADGET;
             case 2:
-                return Wish.CLOTH;
+                return WishType.CLOTH;
             case 3:
-                return Wish.FOOD;
+                return WishType.FOOD;
             default:
-                return Wish.TOY;// Actually never happens
+                return WishType.TOY;// Actually never happens
         }
     }
 }

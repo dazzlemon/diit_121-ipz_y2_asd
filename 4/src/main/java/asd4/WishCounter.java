@@ -6,8 +6,8 @@ public class WishCounter {
     private static int clothCounter = 0;
     private static int foodCounter = 0;
 
-    public static void printStats() {
-        System.out.printf(
+    public static String statsString() {
+        return String.format(
             "Toys: %d\n" +
             "Gadgets: %d\n" +
             "Clothes: %d\n" +
@@ -19,7 +19,7 @@ public class WishCounter {
         );
     }
 
-    public static void count(Wish w) {
+    public static void count(WishType w) {
         switch (w) {
         case CLOTH:
             clothCounter++;
