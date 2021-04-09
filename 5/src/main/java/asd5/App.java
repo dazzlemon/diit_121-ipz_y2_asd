@@ -15,7 +15,9 @@ public class App {
         bst.add(4, 4);
         bst.add(2, 2);
         bst.add(8, 8);
+        
         bst.add(8, 9);
+        bst.add(5, 99);
 
         bst.inOrder();
 

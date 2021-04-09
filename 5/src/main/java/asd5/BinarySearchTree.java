@@ -36,11 +36,9 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> {
      * @param key
      */
     public void add(Key key, Data data) {
-        var newNode = new Node(key, data);
-
         var curr = root;
         var next = root;
-        while (next != null && next.key != key) {
+        while (next != null && next.key != key) {// search place for insertion
             curr = next;
 
             if (key.compareTo(curr.key) < 0) {
@@ -49,35 +47,26 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> {
                 next = curr.right;
             }
         }
-        if (curr == null) {
+
+
+        var newNode = new Node(key, data);
+        if (curr == null) {// empty tree
             root = newNode;
         } else {
             if (key.compareTo(curr.key) < 0) {
-                curr.left = newNode;
+                if (curr.left != null) {// save subtrees when replacing data
+                    curr.left.data = data;
+                } else {
+                    curr.left = newNode;
+                }
             } else {
-                curr.right = newNode;
+                if (curr.right != null) {// save subtrees when replacing data
+                    curr.right.data = data;
+                } else {
+                    curr.right = newNode;
+                }
             }
         }
-
-        // Node curr = root;
-        // Node prev = null;
-
-        // while (curr != null) {
-        //     prev = curr;
-        //     if (key.compareTo(curr.key) < 0) {
-        //         curr = curr.left;
-        //     } else {
-        //         curr = curr.right;
-        //     }
-        // }
-        // if (prev == null) {
-        //     prev = newNode;
-        //     root = prev;
-        // } else if (key.compareTo(prev.key) < 0) {
-        //     prev.left = newNode;
-        // } else {
-        //     prev.right = newNode;
-        // }
     }
 
 
@@ -91,7 +80,6 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> {
     }
 
 
-    //in order
     void inOrder() {
         var stack = new Stack<Node>();
         var curr = root;
@@ -99,8 +87,7 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> {
             if(curr != null) {
                 stack.push(curr);
                 curr = curr.left;
-            }
-            else {
+            } else {
                 curr = stack.pop();
                 System.out.printf("%d  ", curr.data);
                 curr = curr.right;
