@@ -29,7 +29,7 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Ite
     public Data get(Key key) {
         var curr = root;
         var next = root;
-        while (next != null && next.key != key) {
+        while (next != null && next.key.compareTo(key) != 0) {
             curr = next;
 
             if (key.compareTo(curr.key) < 0) {
@@ -91,7 +91,7 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Ite
     public Data poll(Key key) {
         var curr = root;
         var next = root;
-        while (next != null && next.key != key) {
+        while (next != null && next.key.compareTo(key) != 0) {
             curr = next;
 
             if (key.compareTo(curr.key) < 0) {

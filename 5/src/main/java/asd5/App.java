@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 
 public class App {
     public static void main(String[] args) {
-        BstTest.bstTest();
+        //BstTest.bstTest();
 
-        // var io = new IO();
-        // io.run();
+        var io = new IO();
+        io.run();
     }
 }
 
@@ -19,7 +19,7 @@ class IO {
     private boolean isRunning;
     private String response;
     private Scanner in = new Scanner(System.in).useDelimiter("\n");
-    private Queue<Wish> wishList = new LinkedList<>();
+    private BinarySearchTree<String, Wish> wishList = new BinarySearchTree<>();
 
     public void run() {
         this.isRunning = true;
@@ -41,38 +41,21 @@ class IO {
             this.response = "";
             this.isRunning = false;
             break;
-        case "receive":
-            if (this.wishList.isEmpty()) {
-                this.response = "no wishes available, try to \'wish\' first!(See \'help\')";
-            } else {
-                var wish = wishList.remove();
-                WishCounter.count(wish.getWishType());
-                this.response = "received " + wish.toString();
-            }
-            break;
         case "ls":
             this.response = "";
             for (var wish : wishList) {
                 this.response += "\t" + wish.toString() + "\n";
             }
             break;
-        case "sz":
-            this.response = String.format("%s wishes available", wishList.size());
-            break;
-        case "stats":
-            this.response = WishCounter.statsString();
-            break;
         case "help":
             this.response = "Commands:\n"
                           + "\tquit\n"
-                          + "\treceive\n"
-                          + "\tls - print queue\n"
-                          + "\tsz - print amount of elems in queue\n"
-                          + "\tstats\n"
-                          + "\twish \"<type>\" \"<receiver>\", type = TOY | GADGET | CLOTH | FOOD";
+                          + "\tget \"<receiver>\"\n"
+                          + "\tls\n"
+                          + "\tadd \"<type>\" \"<receiver>\", type = TOY | GADGET | CLOTH | FOOD";
             break;
         default:
-            if (!this.wishMatch()) {
+            if (!this.addMatch() && !this.getMatch()) {
 			    this.response = String.format("<%s> is incorrect command, try \'help\'", this.query);
 		    }
             break;
@@ -80,12 +63,12 @@ class IO {
 	}
 
     /**
-	 * Checks if the query is correct <wish> command,
+	 * Checks if the query is correct <add> command,
 	 * if true resolves it and returns true
 	 */
-    private boolean wishMatch() {
+    private boolean addMatch() {
         // wish "<type>" "<receiver>""
-        var p = Pattern.compile("wish \"(.+)\" \"(.+)\"");//^$ are included by matches()
+        var p = Pattern.compile("add \"(.+)\" \"(.+)\"");//^$ are included by matches()
 		var m = p.matcher(this.query);
 		var isMatch = m.matches();
 		if (isMatch) {
@@ -106,8 +89,25 @@ class IO {
             default:
                 return false;// bad
             }
-            wishList.add(new Wish(wt, m.group(2)));
-			this.response = "";
+            
+            wishList.add(m.group(2), new Wish(wt, m.group(2)));
+			this.response = "successufully added";
+		}
+		return isMatch;
+    }
+
+    /**
+     * Checks if the query is correct <get> command
+     * @return
+     */
+    private boolean getMatch() {
+        var p = Pattern.compile("get \"(.+)\"");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var wish = wishList.get(m.group(1));
+			this.response = wish == null ? "no such wish"
+                                         : wish.toString();
 		}
 		return isMatch;
     }
