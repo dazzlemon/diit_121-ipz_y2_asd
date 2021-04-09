@@ -19,7 +19,10 @@ public class App {
         bst.add(8, 9);
         bst.add(5, 99);
 
-        bst.inOrder();
+        //bst.inOrder();
+        for (var i : bst) {
+            System.out.println(i);
+        }
 
         // var io = new IO();
         // io.run();

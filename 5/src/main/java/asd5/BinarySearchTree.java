@@ -1,8 +1,9 @@
 package asd5;
 
 import java.util.Stack;
+import java.util.Iterator;
 
-public class BinarySearchTree <Key extends Comparable<Key>, Data> {
+public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Iterable<Data> {
     private class Node {
         public Key key;
         public Data data;
@@ -80,17 +81,34 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> {
     }
 
 
-    void inOrder() {
-        var stack = new Stack<Node>();
-        var curr = root;
-        while(!stack.empty() || curr != null){
-            if(curr != null) {
-                stack.push(curr);
-                curr = curr.left;
-            } else {
-                curr = stack.pop();
-                System.out.printf("%d  ", curr.data);
-                curr = curr.right;
+    @Override
+    public BstIterator iterator() {
+        return new BstIterator();
+    }
+
+
+    class BstIterator implements Iterator<Data> {
+        private Stack<Node> stack = new Stack<>();
+        private Node curr = root;
+
+
+        @Override
+        public boolean hasNext() {
+            return !stack.empty() || curr != null;
+        }
+
+
+        public Data next() {
+            while (true) {
+                if(curr != null) {
+                    stack.push(curr);
+                    curr = curr.left;
+                } else {
+                    curr = stack.pop();
+                    var ret = curr.data;
+                    curr = curr.right;
+                    return ret;
+                }
             }
         }
     }
