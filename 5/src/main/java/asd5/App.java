@@ -51,11 +51,12 @@ class IO {
             this.response = "Commands:\n"
                           + "\tquit\n"
                           + "\tget \"<receiver>\"\n"
+                          + "\tpoll \"<receiver>\"\n"
                           + "\tls\n"
                           + "\tadd \"<type>\" \"<receiver>\", type = TOY | GADGET | CLOTH | FOOD";
             break;
         default:
-            if (!this.addMatch() && !this.getMatch()) {
+            if (!this.addMatch() && !this.getMatch() && !this.pollMatch()) {
 			    this.response = String.format("<%s> is incorrect command, try \'help\'", this.query);
 		    }
             break;
@@ -91,7 +92,7 @@ class IO {
             }
             
             wishList.add(m.group(2), new Wish(wt, m.group(2)));
-			this.response = "successufully added";
+			this.response = "\tsuccessufully added";
 		}
 		return isMatch;
     }
@@ -106,8 +107,24 @@ class IO {
 		var isMatch = m.matches();
 		if (isMatch) {
             var wish = wishList.get(m.group(1));
-			this.response = wish == null ? "no such wish"
-                                         : wish.toString();
+			this.response = "\t" + (wish == null ? "no such wish"
+                                                 : wish.toString());
+		}
+		return isMatch;
+    }
+
+    /**
+     * Checks if the query is correct <poll> command
+     * @return
+     */
+    private boolean pollMatch() {
+        var p = Pattern.compile("poll \"(.+)\"");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var wish = wishList.poll(m.group(1));
+			this.response = "\t" + (wish == null ? "no such wish"
+                                                 : wish.toString() + " successfully removed");
 		}
 		return isMatch;
     }
