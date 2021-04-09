@@ -7,8 +7,20 @@ import java.util.regex.Pattern;
 
 public class App {
     public static void main(String[] args) {
-        var io = new IO();
-        io.run();
+        var bst = new BinarySearchTree<Integer, Integer>();
+
+        bst.add(3, 3);
+        bst.add(5, 5);
+        bst.add(1, 1);
+        bst.add(4, 4);
+        bst.add(2, 2);
+        bst.add(8, 8);
+        bst.add(8, 9);
+
+        bst.inOrder();
+
+        // var io = new IO();
+        // io.run();
     }
 }
 
