@@ -127,28 +127,31 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Ite
                 
                 Node newNode;
                 Node newNodeP;
+                Node newNodeS;
                 if (succHeight > predHeight) {
                     newNode = succ;
                     newNodeP = succP;
+                    newNodeS = succ.left;
                 } else {
                     newNode = pred;
                     newNodeP = predP;
+                    newNodeS = succ.right;
                 }
 
                 if (newNodeP.right == newNode) {
-                    newNodeP.right = null;
+                    newNodeP.right = newNodeS;
                 } else {
-                    newNodeP.left = null;
+                    newNodeP.left = newNodeS;
                 }
 
                 next.key = newNode.key;
                 next.data = newNode.data;
             } else {
+                var child = next.right == null ? next.left
+                                               : next.right;
                 if (next == root) {
-                    root = null;
+                    root = child;
                 } else {
-                    var child = next.right == null ? next.left
-                                                   : next.right;
                     if (curr.left == next) {
                         curr.left = child;
                     } else {
@@ -156,7 +159,6 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Ite
                     }
                 }
             }
-
             return ret;
         }
     }
