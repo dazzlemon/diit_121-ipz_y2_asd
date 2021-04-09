@@ -7,6 +7,14 @@ import java.util.regex.Pattern;
 
 public class App {
     public static void main(String[] args) {
+        bstTest();
+
+        // var io = new IO();
+        // io.run();
+    }
+
+
+    public static void bstTest() {
         var bst = new BinarySearchTree<Integer, Integer>();
 
         bst.add(3, 3);
@@ -19,13 +27,67 @@ public class App {
         bst.add(8, 9);
         bst.add(5, 99);
 
-        //bst.inOrder();
+        // 1
         for (var i : bst) {
-            System.out.println(i);
+            System.out.print(i + " ");
         }
+        System.out.println();
 
-        // var io = new IO();
-        // io.run();
+        // 2
+        System.out.print(bst.get(1) + " ");
+        System.out.print(bst.get(2) + " ");
+        System.out.print(bst.get(3) + " ");
+        System.out.print(bst.get(4) + " ");
+        System.out.print(bst.get(5) + " ");
+        System.out.println(bst.get(8));
+
+        // 4
+        System.out.println(bst.get(100));// null
+        
+        // 5
+        System.out.println(bst.poll(100));// null
+
+        // 6
+        bst.poll(5);
+        for (var i : bst) {
+            System.out.print(i + " ");
+        }
+        System.out.println("expected 1 2 3 4 9");
+
+        // 7
+        bst.poll(3);
+        for (var i : bst) {
+            System.out.print(i + " ");
+        }
+        System.out.println("expected 1 2 4 9");
+
+        // 8
+        bst.poll(1);
+        for (var i : bst) {
+            System.out.print(i + " ");
+        }
+        System.out.println("expected 2 4 9");
+
+        // 9
+        bst.poll(8);
+        for (var i : bst) {
+            System.out.print(i + " ");
+        }
+        System.out.println("expected 2 4");
+
+        // 10
+        bst.poll(2);
+        for (var i : bst) {
+            System.out.print(i + " ");
+        }
+        System.out.println("expected 4");
+
+        // 11
+        bst.poll(4);
+        for (var i : bst) {
+            System.out.print(i + " ");
+        }
+        System.out.println("expected none");
     }
 }
 

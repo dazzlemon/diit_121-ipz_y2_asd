@@ -27,7 +27,19 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Ite
      * @return Data of node with key, or null if it doesnt exist
      */
     public Data get(Key key) {
-        return null;
+        var curr = root;
+        var next = root;
+        while (next != null && next.key != key) {
+            curr = next;
+
+            if (key.compareTo(curr.key) < 0) {
+                next = curr.left;    
+            } else {
+                next = curr.right;
+            }
+        }
+        return next == null ? null
+                            : next.data;
     }
 
 
@@ -77,7 +89,76 @@ public class BinarySearchTree <Key extends Comparable<Key>, Data> implements Ite
      * @return Data of node, or null.
      */
     public Data poll(Key key) {
-        return null;//tmp
+        var curr = root;
+        var next = root;
+        while (next != null && next.key != key) {
+            curr = next;
+
+            if (key.compareTo(curr.key) < 0) {
+                next = curr.left;    
+            } else {
+                next = curr.right;
+            }
+        }
+
+        if (next == null) {
+            return null;
+        } else {
+            var ret = next.data;
+
+            if (next.right != null && next.left != null) {
+                int predHeight = 0;
+                var pred = next.right;
+                var predP = next;
+                while (pred.left != null) {
+                    predP = pred;
+                    pred = pred.left;
+                    predHeight++;
+                }
+
+                int succHeight = 0;
+                var succ = next.left;
+                var succP = next;
+                while (succ.right != null) {
+                    succP = succ;
+                    succ = succ.right;
+                    succHeight++;
+                }
+                
+                Node newNode;
+                Node newNodeP;
+                if (succHeight > predHeight) {
+                    newNode = succ;
+                    newNodeP = succP;
+                } else {
+                    newNode = pred;
+                    newNodeP = predP;
+                }
+
+                if (newNodeP.right == newNode) {
+                    newNodeP.right = null;
+                } else {
+                    newNodeP.left = null;
+                }
+
+                next.key = newNode.key;
+                next.data = newNode.data;
+            } else {
+                if (next == root) {
+                    root = null;
+                } else {
+                    var child = next.right == null ? next.left
+                                                   : next.right;
+                    if (curr.left == next) {
+                        curr.left = child;
+                    } else {
+                        curr.right = child;
+                    }
+                }
+            }
+
+            return ret;
+        }
     }
 
 
