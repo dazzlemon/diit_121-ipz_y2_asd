@@ -13,6 +13,19 @@ public interface Graph {
      * @param v2 edge end
      */
     void add(Vertex v1, Vertex v2);
+
+    /**
+     * Removes vertex and all its edges
+     * @param v vertex to add
+     */
+    void remove(Vertex v);
+
+    /**
+     * Removes edge between two vertices
+     * @param v1 edge start
+     * @param v2 edge end
+     */
+    void remove(Vertex v1, Vertex v2);
     
     /**
      * Returns iterable object that traverses Graph with depth first search alogirthm
