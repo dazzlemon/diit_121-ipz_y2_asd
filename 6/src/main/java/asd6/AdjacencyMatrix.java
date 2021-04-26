@@ -1,6 +1,16 @@
 package asd6;
 
+import java.util.LinkedList;
+
 public class AdjacencyMatrix implements Graph {
+    LinkedList<LinkedList<Boolean>> matrix;
+    LinkedList<String> ids;
+    
+    AdjacencyMatrix() {
+        matrix = new LinkedList<>();
+        ids    = new LinkedList<>();
+    }
+    
     @Override
     public void add(Vertex v) {
         // TODO Auto-generated method stub
