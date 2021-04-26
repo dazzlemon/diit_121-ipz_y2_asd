@@ -1,6 +1,5 @@
 package asd6;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -96,11 +95,19 @@ public abstract class AbstractGraph implements Graph {
         return discovered;
     }
 
-    public final Iterable<String> dfs(Vertex v) {
-        return search(v);
+    public final Iterable<String> dfs(Vertex v) {// mb make own object to be faster?
+        var res = new Stack<String>();
+        for (var i : search(v, new StackWrapper<Vertex>())) {
+            res.push(i.getId());
+        }
+        return res;
     }
 
-    public final Iterable<String> bfs(Vertex v) {
-        return search(v);
+    public final Iterable<String> bfs(Vertex v) {// mb make own object to be faster?
+        var res = new Stack<String>();
+        for (var i : search(v, new QueueWrapper<Vertex>())) {
+            res.push(i.getId());
+        }
+        return res;
     }
 }
