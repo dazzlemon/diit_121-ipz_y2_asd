@@ -38,31 +38,35 @@ public class AdjacencyMatrix extends AbstractGraph {
     
     @Override
     public void add(String v) {
-        // TODO Auto-generated method stub
-        
+        if (!ids.contains(v)) {
+            // TODO
+        }
     }
 
     @Override
     public void add(String v1, String v2) {
-        // TODO Auto-generated method stub
-        
+        if (ids.contains(v1) && ids.contains(v2)) {
+            // TODO
+        }
     }
 
     @Override
     public void remove(String v) {
-        // TODO Auto-generated method stub
-        
+        if (ids.contains(v)) {
+            // TODO
+        }
     }
 
     @Override
     public void remove(String v1, String v2) {
-        // TODO Auto-generated method stub
-        
+        if (ids.contains(v1) && ids.contains(v2)) {
+            // TODO
+        }
     }
 
     @Override
     protected Vertex stringToVertex(String v) {
-        // TODO Auto-generated method stub
+        // TODO
         return null;
     }
 }
