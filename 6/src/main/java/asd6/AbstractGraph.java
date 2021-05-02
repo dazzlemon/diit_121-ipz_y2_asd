@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public abstract class AbstractGraph implements Graph {
-    private abstract class Vertex implements Graph.Vertex {
+    protected abstract class Vertex implements Graph.Vertex {
         public abstract Iterable<Vertex> neighbours();
     }
 
@@ -95,17 +95,21 @@ public abstract class AbstractGraph implements Graph {
         return discovered;
     }
 
-    public final Iterable<String> dfs(Vertex v) {// mb make own object to be faster?
+    protected abstract Vertex stringToVertex(String v);
+
+    @Override
+    public final Iterable<String> dfs(String v) {// mb make own object to be faster?
         var res = new Stack<String>();
-        for (var i : search(v, new StackWrapper<Vertex>())) {
+        for (var i : search(stringToVertex(v), new StackWrapper<Vertex>())) {
             res.push(i.getId());
         }
         return res;
     }
 
-    public final Iterable<String> bfs(Vertex v) {// mb make own object to be faster?
+    @Override
+    public final Iterable<String> bfs(String v) {// mb make own object to be faster?
         var res = new Stack<String>();
-        for (var i : search(v, new QueueWrapper<Vertex>())) {
+        for (var i : search(stringToVertex(v), new QueueWrapper<Vertex>())) {
             res.push(i.getId());
         }
         return res;

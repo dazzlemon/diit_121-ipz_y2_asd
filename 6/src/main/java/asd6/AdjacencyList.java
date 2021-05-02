@@ -1,38 +1,32 @@
 package asd6;
 
-public class AdjacencyList implements Graph {
+public class AdjacencyList extends AbstractGraph {
     @Override
-    public void add(Vertex v) {
+    public void add(String v) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void add(Vertex v1, Vertex v2) {
+    public void add(String v1, String v2) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void remove(Vertex v) {
+    public void remove(String v) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void remove(Vertex v1, Vertex v2) {
+    public void remove(String v1, String v2) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public Iterable<String> dfs(Vertex start) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Iterable<String> bfs(Vertex start) {
+    protected Vertex stringToVertex(String v) {
         // TODO Auto-generated method stub
         return null;
     }

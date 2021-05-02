@@ -9,39 +9,39 @@ public interface Graph {
      * Adds vertex
      * @param v vertex to add
      */
-    public void add(Vertex v);
+    public void add(String v);
 
     /**
      * Adds edge between two vertices
      * @param v1 edge start
      * @param v2 edge end
      */
-    public void add(Vertex v1, Vertex v2);
+    public void add(String v1, String v2);
 
     /**
      * Removes vertex and all its edges
-     * @param v vertex to add
+     * @param v vertex to remove
      */
-    public void remove(Vertex v);
+    public void remove(String v);
 
     /**
      * Removes edge between two vertices
      * @param v1 edge start
      * @param v2 edge end
      */
-    public void remove(Vertex v1, Vertex v2);
+    public void remove(String v1, String v2);
     
     /**
      * Returns iterable object that traverses Graph with depth first search alogirthm
      * @param start
      * @return
      */
-    public Iterable<String> dfs(Vertex start);
+    public Iterable<String> dfs(String start);
 
     /**
      * Returns iterable object that traverses Graph with breadth first search alogirthm
      * @param start
      * @return
      */
-    public Iterable<String> bfs(Vertex start);
+    public Iterable<String> bfs(String start);
 }
