@@ -87,12 +87,21 @@ public abstract class AbstractGraph implements Graph {
             v = collection.pop();
             if (discovered.search(v) == -1) {
                 discovered.push(v);
-                for (var w : v.neighbours()) {
+                var vns = reverse(v.neighbours());
+                for (var w : vns) {
                     collection.push(w);
                 }
             }
         }
         return discovered;
+    }
+
+    private Iterable<Vertex> reverse(Iterable<Vertex> it) {
+        var newIt = new LinkedList<Vertex>();
+        for (var v : it) {
+            newIt.addFirst(v);
+        }
+        return newIt;
     }
 
     protected abstract Vertex stringToVertex(String v);

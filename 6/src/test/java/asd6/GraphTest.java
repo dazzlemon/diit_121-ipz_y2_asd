@@ -52,8 +52,29 @@ public class GraphTest {
          * @@    @@@@@@@@@@@@@@@@@@@@    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          */
-        graph.dfs(" ");
-        assertTrue(true);
+        graph.add("A");
+        graph.add("B");
+        graph.add("C");
+        graph.add("D");
+        graph.add("E");
+        graph.add("F");
+
+        graph.add("A", "B");
+        graph.add("A", "C");
+        graph.add("A", "D");
+
+        graph.add("B", "E");
+        graph.add("B", "F");
+
+        graph.add("C", "F");
+
+        var str = "";
+
+        for (var v : graph.dfs("A")) {
+            str += v;
+        }
+
+        assertTrue(str.compareTo("ABEFCD") == 0);
     }
 
     @Test
@@ -86,7 +107,7 @@ public class GraphTest {
     @Parameterized.Parameters
     public static Collection<Object[]> instancesToTest() {
         return Arrays.asList(
-                    new Object[]{new AdjacencyList()},
+                    new Object[]{new AdjacencyMatrix()},// new Object[]{new AdjacencyList()},
                     new Object[]{new AdjacencyMatrix()}
         );
     }
