@@ -21,8 +21,28 @@ public class App {
 
         g.add("E", "A");
 
+        print(g);
+
+        g.remove("D");
+        System.out.println("Remove D");
+        print(g);
+
+        g.remove("C");
+        System.out.println("Remove C");
+        print(g);
+    }
+
+    public static void print(Graph g) {
+        System.out.print("dfs: ");
         for (var v : g.dfs("A")) {
-            System.out.println(v);
+            System.out.print(v);
         }
+        System.out.println();
+
+        System.out.print("bfs: ");
+        for (var v : g.bfs("A")) {
+            System.out.print(v);
+        }
+        System.out.println();
     }
 }
