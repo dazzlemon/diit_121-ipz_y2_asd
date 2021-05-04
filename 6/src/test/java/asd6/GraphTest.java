@@ -100,8 +100,30 @@ public class GraphTest {
          * @@    @@@@@@@@@@@@@@@@@@@@    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
          */
-        graph.bfs(" ");
-        assertTrue(true);
+        graph.add("A");
+        graph.add("B");
+        graph.add("C");
+        graph.add("D");
+        graph.add("E");
+        graph.add("F");
+
+        graph.add("A", "B");
+        graph.add("A", "C");
+        graph.add("A", "D");
+
+        graph.add("B", "E");
+        graph.add("B", "F");
+
+        graph.add("C", "F");
+
+        var str = "";
+
+        for (var v : graph.bfs("A")) {
+            str += v;
+        }
+
+        System.out.println(str);
+        assertTrue(str.compareTo("ABCDEF") == 0);
     }
 
     @Parameterized.Parameters

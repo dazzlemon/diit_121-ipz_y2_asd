@@ -6,6 +6,10 @@ import java.util.Stack;
 
 public abstract class AbstractGraph implements Graph {
     protected abstract class Vertex implements Graph.Vertex {
+        /**
+         * Returns neighbours in reverse order(they'll go trough stack and will be in normal order)
+         * @return neighbours
+         */
         public abstract Iterable<Vertex> neighbours();
     }
 
@@ -63,7 +67,7 @@ public abstract class AbstractGraph implements Graph {
         }
     }
 
-    private Iterable<Vertex> search(Vertex v, PushPopCollection<Vertex> collection) {
+    private Iterable<Vertex> search(Vertex v, boolean dfs) {
         /**
          * 1st iterative algorithm from wiki
          * https://en.wikipedia.org/wiki/Depth-first_search
@@ -80,14 +84,19 @@ public abstract class AbstractGraph implements Graph {
          * =====================================================================
          * if stack is replaced with queue we'll get bfs
          */
-        
+        var collection = dfs ? new StackWrapper<Vertex>()
+                             : new QueueWrapper<Vertex>();
         collection.push(v);
         var discovered = new Stack<Vertex>();
         while (!collection.isEmpty()) {
             v = collection.pop();
             if (discovered.search(v) == -1) {
                 discovered.push(v);
-                var vns = reverse(v.neighbours());
+
+                var vns = v.neighbours();
+                if (dfs) {
+                    vns = reverse(vns);
+                }
                 for (var w : vns) {
                     collection.push(w);
                 }
@@ -109,7 +118,7 @@ public abstract class AbstractGraph implements Graph {
     @Override
     public final Iterable<String> dfs(String v) {// mb make own object to be faster?
         var res = new Stack<String>();
-        for (var i : search(stringToVertex(v), new StackWrapper<Vertex>())) {
+        for (var i : search(stringToVertex(v), true)) {
             res.push(i.getId());
         }
         return res;
@@ -118,7 +127,7 @@ public abstract class AbstractGraph implements Graph {
     @Override
     public final Iterable<String> bfs(String v) {// mb make own object to be faster?
         var res = new Stack<String>();
-        for (var i : search(stringToVertex(v), new QueueWrapper<Vertex>())) {
+        for (var i : search(stringToVertex(v), false)) {
             res.push(i.getId());
         }
         return res;
