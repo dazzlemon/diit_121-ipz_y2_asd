@@ -122,7 +122,6 @@ public class GraphTest {
             str += v;
         }
 
-        System.out.println(str);
         assertTrue(str.compareTo("ABCDEF") == 0);
     }
 

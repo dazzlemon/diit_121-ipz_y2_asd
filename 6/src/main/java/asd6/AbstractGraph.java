@@ -97,6 +97,7 @@ public abstract class AbstractGraph implements Graph {
                 if (dfs) {
                     vns = reverse(vns);
                 }
+                
                 for (var w : vns) {
                     collection.push(w);
                 }
