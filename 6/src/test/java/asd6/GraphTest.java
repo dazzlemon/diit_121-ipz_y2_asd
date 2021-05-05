@@ -116,8 +116,8 @@ public class GraphTest {
     @Parameterized.Parameters
     public static Collection<Object[]> instancesToTest() {
         return Arrays.asList(
-                    new Object[]{new AdjacencyList()},
-                    new Object[]{new AdjacencyMatrix()}
+            new Object[]{new AdjacencyList()},
+            new Object[]{new AdjacencyMatrix()}
         );
     }
 }

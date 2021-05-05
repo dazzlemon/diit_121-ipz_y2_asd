@@ -48,7 +48,7 @@ public class AdjacencyMatrix extends AbstractGraph {
     private class VertexSetIterator implements Iterator<AbstractGraph.Vertex> {
         private boolean reversed;
         private int rootI;
-        private int i;
+        private int i = 0;
         
         VertexSetIterator(boolean reversed, int rootI) {
             this.reversed = reversed;
