@@ -67,31 +67,42 @@ public class GraphTest {
         graph.add("B", "F");
 
         graph.add("C", "F");
+        graph.add("C", "A");
     }
 
     @Test
     public final void testDfs() {
-        var str = "";
+        var str1 = "";
         for (var v : graph.dfs("A")) {
-            str += v;
+            str1 += v;
+        }
+
+        var str2 = "";
+        for (var v : graph.dfs("C")) {
+            str2 += v;
         }
 
         assertTrue(
             graph.getClass().getTypeName() + "::dfs is wrong",
-            str.compareTo("ABEFCD") == 0
+            str1.compareTo("ABEFCD") == 0 && str2.compareTo("CABEFD") == 0
         );
     }
 
     @Test
     public final void testBfs() {
-        var str = "";
+        var str1 = "";
         for (var v : graph.bfs("A")) {
-            str += v;
+            str1 += v;
         }
-        
+
+        var str2 = "";
+        for (var v : graph.bfs("C")) {
+            str2 += v;
+        }
+
         assertTrue(
             graph.getClass().getTypeName() + "::bfs is wrong",
-            str.compareTo("ABCDEF") == 0
+            str1.compareTo("ABCDEF") == 0 && str2.compareTo("CAFBDE") == 0
         );
     }
 

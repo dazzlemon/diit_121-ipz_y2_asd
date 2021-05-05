@@ -89,7 +89,7 @@ public abstract class AbstractGraph implements Graph {
         }
     }
 
-    private Iterable<String> search(Vertex v, boolean dfs) {
+    private Iterable<String> search(String vId, boolean dfs) {
         /**
          * 1st iterative algorithm from wiki
          * https://en.wikipedia.org/wiki/Depth-first_search
@@ -106,6 +106,7 @@ public abstract class AbstractGraph implements Graph {
          * =====================================================================
          * if stack is replaced with queue we'll get bfs
          */
+        var v = stringToVertex(vId);
         var collection = dfs ? new StackWrapper<Vertex>()
                              : new QueueWrapper<Vertex>();
         collection.push(v);
@@ -128,15 +129,16 @@ public abstract class AbstractGraph implements Graph {
         return discovered;
     }
 
+    /* prolly has to throw something */
     protected abstract Vertex stringToVertex(String v);
 
     @Override
     public final Iterable<String> dfs(String v) {
-        return search(stringToVertex(v), true);
+        return search(v, true);
     }
 
     @Override
     public final Iterable<String> bfs(String v) {
-        return search(stringToVertex(v), false);
+        return search(v, false);
     }
 }
