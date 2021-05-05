@@ -1,13 +1,13 @@
 package asd6;
 
-import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.NavigableSet;
 import java.util.SortedMap;
-import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class AdjacencyList extends AbstractGraph {// no multimap in java...
-    SortedMap<String, SortedSet<String>> map = new TreeMap<>();
+    SortedMap<String, NavigableSet<String>> map = new TreeMap<>();
 
     @Override
     public void add(String v) {
@@ -54,12 +54,8 @@ public class AdjacencyList extends AbstractGraph {// no multimap in java...
         }
 
         @Override
-        public Iterable<asd6.AbstractGraph.Vertex> neighbours() {
-            var list = new LinkedList<AbstractGraph.Vertex>();
-            for (var v : map.get(id)) {
-                list.add(new Vertex(v));
-            }
-            return list;
+        public ReverseIterable<AbstractGraph.Vertex> neighbours() {
+            return new VertexSet(id);
         }
         
         @Override
@@ -68,6 +64,44 @@ public class AdjacencyList extends AbstractGraph {// no multimap in java...
                 return false;
             }
             return id == ((Vertex)other).id;
+        }
+    }
+
+    private class VertexSet implements ReverseIterable<AbstractGraph.Vertex> {
+        private boolean reversed = false;
+        private String root;
+
+        VertexSet(String root) {
+            this.root = root;
+        }
+        
+        @Override
+        public Iterator<AbstractGraph.Vertex> iterator() {
+            return new VertexSetIterator(reversed, root);
+        }
+
+        @Override
+        public void reverse() {
+            reversed = !reversed; 
+        }
+    }
+
+    private class VertexSetIterator implements Iterator<AbstractGraph.Vertex> {
+        private Iterator<String> it;
+        
+        VertexSetIterator(boolean reversed, String root) {
+            it = reversed ? map.get(root).descendingIterator()
+                          : map.get(root).iterator();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return it.hasNext();
+        }
+
+        @Override
+        public asd6.AbstractGraph.Vertex next() {
+            return new Vertex(it.next());
         }
     }
 

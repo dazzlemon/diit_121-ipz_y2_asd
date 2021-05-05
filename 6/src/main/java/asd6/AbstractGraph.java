@@ -5,12 +5,26 @@ import java.util.Queue;
 import java.util.Stack;
 
 public abstract class AbstractGraph implements Graph {
-    protected abstract class Vertex implements Graph.Vertex {
+    interface ReverseIterable <T extends Comparable<T>> extends Iterable <T> {
         /**
-         * Returns neighbours in reverse order(they'll go trough stack and will be in normal order)
+         * reverse the order of elements in collection
+         */
+        void reverse();
+    }
+
+    protected abstract class Vertex 
+            implements Graph.Vertex, Comparable<Vertex> {
+        /**
+         * Returns neighbours in natural order
          * @return neighbours
          */
-        public abstract Iterable<Vertex> neighbours();
+        public abstract ReverseIterable<Vertex> neighbours();
+
+
+        @Override
+        public int compareTo(Vertex arg0) {
+            return getId().compareToIgnoreCase(arg0.getId());
+        }
     }
 
     private abstract class PushPopCollection <T> {
@@ -95,7 +109,7 @@ public abstract class AbstractGraph implements Graph {
 
                 var vns = v.neighbours();
                 if (dfs) {
-                    vns = reverse(vns);
+                    vns.reverse();
                 }
                 
                 for (var w : vns) {
@@ -106,18 +120,10 @@ public abstract class AbstractGraph implements Graph {
         return discovered;
     }
 
-    private Iterable<Vertex> reverse(Iterable<Vertex> it) {
-        var newIt = new LinkedList<Vertex>();
-        for (var v : it) {
-            newIt.addFirst(v);
-        }
-        return newIt;
-    }
-
     protected abstract Vertex stringToVertex(String v);
 
     @Override
-    public final Iterable<String> dfs(String v) {// mb make own object to be faster?
+    public final Iterable<String> dfs(String v) {// TODO make Iterable
         var res = new Stack<String>();
         for (var i : search(stringToVertex(v), true)) {
             res.push(i.getId());
@@ -126,7 +132,7 @@ public abstract class AbstractGraph implements Graph {
     }
 
     @Override
-    public final Iterable<String> bfs(String v) {// mb make own object to be faster?
+    public final Iterable<String> bfs(String v) {// TODO make Iterable
         var res = new Stack<String>();
         for (var i : search(stringToVertex(v), false)) {
             res.push(i.getId());
