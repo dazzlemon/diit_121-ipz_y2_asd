@@ -61,7 +61,7 @@ public class GraphTest {
         for (var v : graph.dfs("A")) {
             str += v;
         }
-        System.out.println(str);// TODO
+
         assertTrue(
             graph.getClass().getTypeName() + "::dfs is wrong",
             str.compareTo("ABEFCD") == 0
