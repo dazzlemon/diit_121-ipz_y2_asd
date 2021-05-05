@@ -62,6 +62,13 @@ public class AdjacencyList extends AbstractGraph {// no multimap in java...
             return list;
         }
         
+        @Override
+        public boolean equals(Object other) {
+            if (other.getClass() != this.getClass()) {
+                return false;
+            }
+            return id == ((Vertex)other).id;
+        }
     }
 
     @Override
