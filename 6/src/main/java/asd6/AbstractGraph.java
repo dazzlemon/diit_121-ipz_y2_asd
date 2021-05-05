@@ -131,7 +131,7 @@ public abstract class AbstractGraph implements Graph {
     protected abstract Vertex stringToVertex(String v);
 
     @Override
-    public final Iterable<String> dfs(String v) {// TODO make Iterable
+    public final Iterable<String> dfs(String v) {
         var res = new Stack<String>();
         for (var i : search(stringToVertex(v), true)) {
             res.push(i.getId());
@@ -140,7 +140,7 @@ public abstract class AbstractGraph implements Graph {
     }
 
     @Override
-    public final Iterable<String> bfs(String v) {// TODO make Iterable
+    public final Iterable<String> bfs(String v) {
         var res = new Stack<String>();
         for (var i : search(stringToVertex(v), false)) {
             res.push(i.getId());
