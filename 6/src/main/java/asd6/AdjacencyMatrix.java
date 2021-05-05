@@ -20,7 +20,7 @@ public class AdjacencyMatrix extends AbstractGraph {
         }
 
         @Override
-        public Iterable<asd6.AbstractGraph.Vertex> neighbours() {
+        public ReverseIterable<AbstractGraph.Vertex> neighbours() {
             var list = new LinkedList<AbstractGraph.Vertex>();
             for (int j = 0; j < ids.size(); j++) {
                 if (matrix.get(i).get(j)) {
@@ -28,14 +28,6 @@ public class AdjacencyMatrix extends AbstractGraph {
                 }
             }
             return list;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other.getClass() != this.getClass()) {
-                return false;
-            }
-            return i == ((Vertex)other).i;
         }
     }
 

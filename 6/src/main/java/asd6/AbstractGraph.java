@@ -25,6 +25,14 @@ public abstract class AbstractGraph implements Graph {
         public int compareTo(Vertex arg0) {
             return getId().compareToIgnoreCase(arg0.getId());
         }
+        
+        @Override
+        public boolean equals(Object other) {// for search algorithm
+            if (other.getClass() != this.getClass()) {
+                return false;
+            }
+            return getId() == ((Vertex)other).getId();
+        }
     }
 
     private abstract class PushPopCollection <T> {
