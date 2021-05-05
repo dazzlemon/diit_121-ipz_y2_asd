@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class AdjacencyMatrix extends AbstractGraph {
-    LinkedList<LinkedList<Boolean>> matrix;
+    LinkedList<LinkedList<Boolean>> matrix;// true - edge, false - no edge
     TreeSetIndexed<String> ids;
     
     private class Vertex extends AbstractGraph.Vertex {
@@ -48,25 +48,30 @@ public class AdjacencyMatrix extends AbstractGraph {
     private class VertexSetIterator implements Iterator<AbstractGraph.Vertex> {
         private boolean reversed;
         private int rootI;
-        private int i = 0;
+        private int i;
         
         VertexSetIterator(boolean reversed, int rootI) {
             this.reversed = reversed;
             this.rootI = rootI;
+            while (i < ids.size() && !matrix.get(rootI).get(i)) {// first ::next
+                i++;
+            }
         }
 
         @Override
         public boolean hasNext() {
-            return i < ids.size();
+            return i < ids.size() && matrix.get(rootI).get(i);
         }
 
         @Override
         public asd6.AbstractGraph.Vertex next() {
-            while (i < ids.size() && !matrix.get(rootI).get(i)) {
+            //System.out.println(String.format("i: %s, size: %s", i, ids.size()));
+            var nextV = new Vertex(reversed ? ids.size() - 1 - i
+                                            : i);
+            do {
                 i++;
-            }
-            return new Vertex(reversed ? ids.size() - 1 - i
-                                       : i);
+            } while (i < ids.size() && !matrix.get(rootI).get(i));
+            return nextV;
         }
     }
 
