@@ -1,5 +1,6 @@
 package asd6;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
@@ -21,13 +22,51 @@ public class AdjacencyMatrix extends AbstractGraph {
 
         @Override
         public ReverseIterable<AbstractGraph.Vertex> neighbours() {
-            var list = new LinkedList<AbstractGraph.Vertex>();
-            for (int j = 0; j < ids.size(); j++) {
-                if (matrix.get(i).get(j)) {
-                    list.add(new Vertex(j));
-                }
+            return new VertexSet(i);
+        }
+    }
+
+    private class VertexSet implements ReverseIterable<AbstractGraph.Vertex> {
+        private boolean reversed = false;
+        private int rootI;
+
+        VertexSet(int rootI) {
+            this.rootI = rootI;
+        }
+        
+        @Override
+        public Iterator<AbstractGraph.Vertex> iterator() {
+            return new VertexSetIterator(reversed, rootI);
+        }
+
+        @Override
+        public void reverse() {
+            reversed = !reversed; 
+        }
+    }
+
+    private class VertexSetIterator implements Iterator<AbstractGraph.Vertex> {
+        private boolean reversed;
+        private int rootI;
+        private int i;
+        
+        VertexSetIterator(boolean reversed, int rootI) {
+            this.reversed = reversed;
+            this.rootI = rootI;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return i < ids.size();
+        }
+
+        @Override
+        public asd6.AbstractGraph.Vertex next() {
+            while (i < ids.size() && !matrix.get(rootI).get(i)) {
+                i++;
             }
-            return list;
+            return new Vertex(reversed ? ids.size() - 1 - i
+                                       : i);
         }
     }
 

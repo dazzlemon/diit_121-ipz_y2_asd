@@ -117,7 +117,7 @@ public class GraphTest {
     public static Collection<Object[]> instancesToTest() {
         return Arrays.asList(
                     new Object[]{new AdjacencyList()},
-                    new Object[]{new AdjacencyList()}//new Object[]{new AdjacencyMatrix()}
+                    new Object[]{new AdjacencyMatrix()}
         );
     }
 }
