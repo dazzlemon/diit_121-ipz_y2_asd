@@ -53,25 +53,36 @@ public class AdjacencyMatrix extends AbstractGraph {
         VertexSetIterator(boolean reversed, int rootI) {
             this.reversed = reversed;
             this.rootI = rootI;
-            while (i < ids.size() && !matrix.get(rootI).get(i)) {// first ::next
+            while (i < ids.size() && !isITrue()) {// first ::next
                 i++;
             }
         }
 
         @Override
         public boolean hasNext() {
-            return i < ids.size() && matrix.get(rootI).get(i);
+            return i < ids.size() && isITrue();
         }
 
         @Override
         public asd6.AbstractGraph.Vertex next() {
-            //System.out.println(String.format("i: %s, size: %s", i, ids.size()));
-            var nextV = new Vertex(reversed ? ids.size() - 1 - i
-                                            : i);
+            var nextV = new Vertex(mappedI());
             do {
                 i++;
-            } while (i < ids.size() && !matrix.get(rootI).get(i));
+            } while (i < ids.size() && !isITrue());
             return nextV;
+        }
+
+        /**
+         * checks if i-th or (ids.size - 1 - i)th is true
+         * @return
+         */
+        private boolean isITrue() {
+            return matrix.get(rootI).get(mappedI());
+        }
+
+        private int mappedI() {
+            return reversed ? ids.size() - 1 - i
+                            : i;
         }
     }
 

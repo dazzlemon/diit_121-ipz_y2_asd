@@ -61,8 +61,11 @@ public class GraphTest {
         for (var v : graph.dfs("A")) {
             str += v;
         }
-        System.out.println(str);
-        assertTrue(str.compareTo("ABEFCD") == 0);
+        System.out.println(str);// TODO
+        assertTrue(
+            graph.getClass().getTypeName() + "::dfs is wrong",
+            str.compareTo("ABEFCD") == 0
+        );
     }
 
     @Test
@@ -109,16 +112,17 @@ public class GraphTest {
         for (var v : graph.bfs("A")) {
             str += v;
         }
-        System.out.println(str);
-        assertTrue(str.compareTo("ABCDEF") == 0);
+        
+        assertTrue(
+            graph.getClass().getTypeName() + "::bfs is wrong",
+            str.compareTo("ABCDEF") == 0
+        );
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> instancesToTest() {
         return Arrays.asList(
-            // new Object[]{new AdjacencyList()},
-            // new Object[]{new AdjacencyList()}
-            new Object[]{new AdjacencyMatrix()},
+            new Object[]{new AdjacencyList()},
             new Object[]{new AdjacencyMatrix()}
         );
     }
