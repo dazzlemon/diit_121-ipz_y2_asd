@@ -6,7 +6,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class AdjacencyList extends AbstractGraph {// no multimap in java...
+public final class AdjacencyList extends AbstractGraph {// no multimap in java...
     SortedMap<String, NavigableSet<String>> map = new TreeMap<>();
 
     @Override
@@ -103,5 +103,20 @@ public class AdjacencyList extends AbstractGraph {// no multimap in java...
             return null;
         }
         return new Vertex(v);
+    }
+
+    @Override
+    public boolean contains(String v) {
+        return map.containsKey(v);
+    }
+
+    @Override
+    public void clear() {
+        map.clear();
+    }
+
+    @Override
+    public int size() {
+        return map.keySet().size();
     }
 }

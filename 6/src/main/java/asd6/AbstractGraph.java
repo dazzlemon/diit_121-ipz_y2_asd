@@ -22,7 +22,7 @@ public abstract class AbstractGraph implements Graph {
 
 
         @Override
-        public int compareTo(Vertex arg0) {
+        public final int compareTo(Vertex arg0) {
             return getId().compareToIgnoreCase(arg0.getId());
         }
     }
@@ -123,6 +123,19 @@ public abstract class AbstractGraph implements Graph {
 
     /* prolly has to throw something */
     protected abstract Vertex stringToVertex(String v);
+
+    public abstract boolean contains(String v);
+    
+    /* remove all vertices & edges */
+    public abstract void clear();
+
+    public final boolean isEmpty() {
+        return size() == 0;
+    }
+
+    /* # of vertices */
+    public abstract int size();
+    
 
     @Override
     public final Iterable<String> dfs(String v) {

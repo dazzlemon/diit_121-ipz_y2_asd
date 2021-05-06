@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-public class AdjacencyMatrix extends AbstractGraph {
+public final class AdjacencyMatrix extends AbstractGraph {
     LinkedList<LinkedList<Boolean>> matrix;// true - edge, false - no edge
     TreeSetIndexed<String> ids;
     
@@ -173,5 +173,21 @@ public class AdjacencyMatrix extends AbstractGraph {
             return null;
         }
         return new Vertex(ids.indexOf(v));
+    }
+
+    @Override
+    public boolean contains(String v) {
+        return ids.contains(v);
+    }
+
+    @Override
+    public void clear() {
+        ids.clear();
+        matrix.clear();
+    }
+
+    @Override
+    public int size() {
+        return ids.size();
     }
 }
