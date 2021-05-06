@@ -148,6 +148,14 @@ public class GraphTest {
         Assertions.assertThrows(
             IllegalArgumentException.class,
             () -> {
+                graph.add("A", "B");
+            },
+            graph.getClass().getTypeName() + "::add already existent edge doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
                 graph.add("A", "M");
             },
             graph.getClass().getTypeName() + "::add edge for non existent vertex doesnt throw"
