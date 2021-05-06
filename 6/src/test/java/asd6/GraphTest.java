@@ -11,10 +11,13 @@ import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
 public class GraphTest {
-    public Graph graph;
+    public GraphFactory graphFactory;
 
-    public GraphTest(Graph graph) {
-        this.graph = graph;
+    public GraphTest(GraphFactory graphFactory) {
+        this.graphFactory = graphFactory;
+    }
+
+    public void graphInit(Graph graph) {
         /**
          * test case
          * expected output:
@@ -72,6 +75,9 @@ public class GraphTest {
 
     @Test
     public final void testDfs() {
+        var graph = graphFactory.graph();
+        graphInit(graph);
+
         var str1 = "";
         for (var v : graph.dfs("A")) {
             str1 += v;
@@ -90,6 +96,9 @@ public class GraphTest {
 
     @Test
     public final void testBfs() {
+        var graph = graphFactory.graph();
+        graphInit(graph);
+        
         var str1 = "";
         for (var v : graph.bfs("A")) {
             str1 += v;
@@ -109,8 +118,26 @@ public class GraphTest {
     @Parameterized.Parameters
     public static Collection<Object[]> instancesToTest() {
         return Arrays.asList(
-            new Object[]{new AdjacencyList()},
-            new Object[]{new AdjacencyMatrix()}
+            new Object[]{new AdjacencyListFactory()},
+            new Object[]{new AdjacencyMatrixFactory()}
         );
+    }
+}
+
+interface GraphFactory {
+    public Graph graph();
+}
+
+class AdjacencyListFactory implements GraphFactory {
+    @Override
+    public Graph graph() {
+        return new AdjacencyList();
+    }
+}
+
+class AdjacencyMatrixFactory implements GraphFactory {
+    @Override
+    public Graph graph() {
+        return new AdjacencyMatrix();
     }
 }

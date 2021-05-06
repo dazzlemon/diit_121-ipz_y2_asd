@@ -44,4 +44,25 @@ public interface Graph {
      * @return
      */
     public Iterable<String> bfs(String start);
+
+    /**
+     * @param v
+     * @return is [v] in this graph
+     */
+    public boolean contains(String v);
+    
+    /**
+     * remove all vertices & edges
+     */
+    public void clear();
+
+    /**
+     * @return size() == 0
+     */
+    public boolean isEmpty();
+
+    /**
+     * @return # of vertices
+     */
+    public int size();
 }

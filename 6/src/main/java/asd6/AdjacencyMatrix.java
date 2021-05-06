@@ -116,44 +116,61 @@ public final class AdjacencyMatrix extends AbstractGraph {
     }
     
     @Override
-    public void add(String v) {
-        if (!ids.contains(v)) {
-            ids.add(v);
-            var i = ids.indexOf(v);
+    public void add(String v) throws IllegalArgumentException {
+        if (contains(v)) {
+            throw new IllegalArgumentException(
+                "Attempt to add vertex that is already in the graph"
+            );
+        }
 
-            matrix.add(i, new LinkedList<>());// new row
-            
-            for (int col = 0; col < ids.size() - 1; col++) {// -1 to set column later
-                matrix.get(i).add(false);// no edges at first
-            }
+        ids.add(v);
+        var i = ids.indexOf(v);
 
-            for (int row = 0; row < ids.size(); row++) {// add new column to each row
-                matrix.get(row).add(i, false);// no edges at first
-            }
+        matrix.add(i, new LinkedList<>());// new row
+        
+        for (int col = 0; col < ids.size() - 1; col++) {// -1 to set column later
+            matrix.get(i).add(false);// no edges at first
+        }
+
+        for (int row = 0; row < ids.size(); row++) {// add new column to each row
+            matrix.get(row).add(i, false);// no edges at first
         }
     }
 
     @Override
     public void add(String v1, String v2) {
-        if (ids.contains(v1) && ids.contains(v2) && v1.compareTo(v2) != 0) {
-            var i1 = ids.indexOf(v1);
-            var i2 = ids.indexOf(v2);
-            
-            matrix.get(i1).set(i2, true);
+        if (v1.compareTo(v2) == 0) {
+            throw new IllegalArgumentException(
+                "Attempt to create edge between one vertex"
+            );
         }
+        if (!contains(v1) || !contains(v2)) {
+            throw new IllegalArgumentException(
+                "Attempt to create edge between non existent vertices"
+            );
+        }
+
+        var i1 = ids.indexOf(v1);
+        var i2 = ids.indexOf(v2);
+        
+        matrix.get(i1).set(i2, true);
     }
 
     @Override
     public void remove(String v) {
-        if (ids.contains(v)) {
-            var i = ids.indexOf(v);
+        if (!contains(v)) {
+            throw new IllegalArgumentException(
+                "Attempt to remove non existent vertex"
+            );
+        }
+        
+        var i = ids.indexOf(v);
 
-            matrix.remove(i);// remove row
-            ids.remove(v);// remove id
+        matrix.remove(i);// remove row
+        ids.remove(v);// remove id
 
-            for (int row = 0; row < ids.size(); row++) {
-                matrix.get(row).remove(i);// remove column
-            }
+        for (int row = 0; row < ids.size(); row++) {
+            matrix.get(row).remove(i);// remove column
         }
     }
 

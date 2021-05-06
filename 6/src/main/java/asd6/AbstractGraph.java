@@ -81,7 +81,8 @@ public abstract class AbstractGraph implements Graph {
         }
     }
 
-    private Iterable<String> search(String vId, boolean dfs) {
+    private Iterable<String> search(String vId, boolean dfs)
+            throws IllegalArgumentException {
         /**
          * 1st iterative algorithm from wiki
          * https://en.wikipedia.org/wiki/Depth-first_search
@@ -121,29 +122,29 @@ public abstract class AbstractGraph implements Graph {
         return discovered;
     }
 
-    /* prolly has to throw something */
-    protected abstract Vertex stringToVertex(String v);
+    /**
+     * 
+     * @param v
+     * @return
+     * @throws IllegalArgumentException when contains(v) -> false
+     */
+    protected abstract Vertex stringToVertex(String v)
+        throws IllegalArgumentException;
 
-    public abstract boolean contains(String v);
-    
-    /* remove all vertices & edges */
-    public abstract void clear();
-
+    @Override
     public final boolean isEmpty() {
         return size() == 0;
     }
 
-    /* # of vertices */
-    public abstract int size();
-    
-
     @Override
-    public final Iterable<String> dfs(String v) {
+    public final Iterable<String> dfs(String v)
+            throws IllegalArgumentException {
         return search(v, true);
     }
 
     @Override
-    public final Iterable<String> bfs(String v) {
+    public final Iterable<String> bfs(String v)
+            throws IllegalArgumentException {
         return search(v, false);
     }
 }
