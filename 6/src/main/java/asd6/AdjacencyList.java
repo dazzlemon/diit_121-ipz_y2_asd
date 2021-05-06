@@ -25,6 +25,9 @@ public final class AdjacencyList extends AbstractGraph {// no multimap in java..
         if (v1.compareTo(v2) == 0) {
             throw new IllegalArgumentException();
         }
+        if (isEdge(v1, v2)) {
+            throw new IllegalArgumentException();
+        }
         map.get(v1).add(v2);
     }
 

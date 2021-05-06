@@ -149,6 +149,11 @@ public final class AdjacencyMatrix extends AbstractGraph {
                 "Attempt to create edge between non existent vertices"
             );
         }
+        if (isEdge(v1, v2)) {
+            throw new IllegalArgumentException(
+                "Attempt to create already existent edge"
+            );
+        }
 
         var i1 = ids.indexOf(v1);
         var i2 = ids.indexOf(v2);
