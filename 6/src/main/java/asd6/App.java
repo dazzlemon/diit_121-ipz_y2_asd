@@ -54,7 +54,8 @@ class IO {
                           + "\tadd \"<v>\"\n"
                           + "\tadd \"<v1>\" \"<v2>\"\n"
                           + "\tremove \"<v>\"\n"
-                          + "\tremove \"<v1>\" \"<v2>\"\n";
+                          + "\tremove \"<v1>\" \"<v2>\"\n"
+                          + "\tisEdge \"<v1>\" \"<v2>\"\n";
             break;
         default:
             if (!this.match()) {
@@ -65,7 +66,12 @@ class IO {
 	}
 
     private boolean match() {
-        return addMatch() || removeMatch() || dfsMatch() || bfsMatch() && containsMatch();
+        return addMatch()
+            || removeMatch()
+            || dfsMatch()
+            || bfsMatch()
+            || containsMatch()
+            || isEdgeMatch();
     }
 
     /**
@@ -117,6 +123,10 @@ class IO {
     }
 
     private boolean containsMatch() {
+        return false;// TODO
+    }
+
+    private boolean isEdgeMatch() {
         return false;// TODO
     }
 }
