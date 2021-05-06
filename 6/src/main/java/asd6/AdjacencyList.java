@@ -11,34 +11,41 @@ public final class AdjacencyList extends AbstractGraph {// no multimap in java..
 
     @Override
     public void add(String v) {
-        if (!map.containsKey(v)) {
-            map.put(v, new TreeSet<>());
+        if (contains(v)) {
+            throw new IllegalArgumentException();
         }
+        map.put(v, new TreeSet<>());
     }
 
     @Override
     public void add(String v1, String v2) {
-        if (map.containsKey(v1) && map.containsKey(v2) && v1.compareTo(v2) != 0) {
-            map.get(v1).add(v2);
+        if (!contains(v1) || !contains(v2)) {
+            throw new IllegalArgumentException();
         }
+        if (v1.compareTo(v2) == 0) {
+            throw new IllegalArgumentException();
+        }
+        map.get(v1).add(v2);
     }
 
     @Override
     public void remove(String v) {
-        if (map.containsKey(v)) {
-            map.remove(v);
+        if (!contains(v)) {
+            throw new IllegalArgumentException();
+        }
+        map.remove(v);
 
-            for (var k : map.keySet()) {
-                map.get(k).remove(v);
-            }
+        for (var k : map.keySet()) {
+            map.get(k).remove(v);
         }
     }
 
     @Override
     public void remove(String v1, String v2) {
-        if (map.containsKey(v1) && map.containsKey(v2)) {
-            map.get(v1).remove(v2);
+        if (!contains(v1) || !contains(v2)) {
+            throw new IllegalArgumentException();
         }
+        map.get(v1).remove(v2);
     }
 
     private class Vertex extends AbstractGraph.Vertex {
@@ -100,7 +107,7 @@ public final class AdjacencyList extends AbstractGraph {// no multimap in java..
     @Override
     protected Vertex stringToVertex(String v) {
         if (!map.containsKey(v)) {
-            return null;
+            throw new IllegalArgumentException();
         }
         return new Vertex(v);
     }
