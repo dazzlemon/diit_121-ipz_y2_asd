@@ -15,7 +15,7 @@ class IO {
     private boolean isRunning;
     private String response;
     private Scanner in = new Scanner(System.in).useDelimiter("\n");
-    private Graph graph = new AdjacencyList();// AdjacencyMatrix
+    private Graph graph = new AdjacencyMatrix();// AdjacencyList
 
     public void run() {
         this.isRunning = true;
@@ -82,19 +82,24 @@ class IO {
             var v1 = m.group(1);
             var v2 = m.group(3);
 
-            if (v2 == null) {
-                graph.add(v1);
-                this.response = String.format(
-                    "\tSuccessfully added vertex \"%s\"",
-                    v1
-                );
-            } else {
-                graph.add(v1, v2);
-                this.response = String.format(
-                    "\tSuccessfully added edge from \"%s\" to \"%s\"",
-                    v1, v2
-                );
+            try {
+                if (v2 == null) {
+                    graph.add(v1);
+                    this.response = String.format(
+                        "\tSuccessfully added vertex \"%s\"",
+                        v1
+                    );
+                } else {
+                    graph.add(v1, v2);
+                    this.response = String.format(
+                        "\tSuccessfully added edge from \"%s\" to \"%s\"",
+                        v1, v2
+                    );
+                }
+            } catch (IllegalArgumentException e) {
+                this.response = "\t" + e.getMessage();
             }
+            
 		}
 		return isMatch;
     }
