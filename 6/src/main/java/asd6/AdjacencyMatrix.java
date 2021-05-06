@@ -213,4 +213,17 @@ public final class AdjacencyMatrix extends AbstractGraph {
     public int size() {
         return ids.size();
     }
+
+    @Override
+    public boolean isEdge(String v1, String v2) {
+        if (!contains(v1) || !contains(v2)) {
+            throw new IllegalArgumentException(
+                "Attempt to check for edge between non existent vertices"
+            );
+        }
+        var i1 = ids.indexOf(v1);
+        var i2 = ids.indexOf(v2);
+
+        return matrix.get(i1).get(i2);
+    }
 }

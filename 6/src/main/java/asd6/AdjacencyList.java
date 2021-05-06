@@ -126,4 +126,12 @@ public final class AdjacencyList extends AbstractGraph {// no multimap in java..
     public int size() {
         return map.keySet().size();
     }
+
+    @Override
+    public boolean isEdge(String v1, String v2) {
+        if (!contains(v1) || !contains(v2)) {
+            throw new IllegalArgumentException();
+        }
+        return map.get(v1).contains(v2);
+    }
 }

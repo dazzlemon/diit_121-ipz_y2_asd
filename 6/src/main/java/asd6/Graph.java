@@ -52,6 +52,14 @@ public interface Graph {
     public boolean contains(String v);
     
     /**
+     * 
+     * @param v1
+     * @param v2
+     * @return is there an edge between [v1] & [v2]
+     */
+    public boolean isEdge(String v1, String v2);
+
+    /**
      * remove all vertices & edges
      */
     public void clear();
