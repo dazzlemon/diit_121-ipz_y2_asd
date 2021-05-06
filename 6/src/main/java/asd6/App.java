@@ -170,7 +170,7 @@ class IO {
 
             try {
                 this.response = "\t";
-                for (var w : graph.dfs(v)) {
+                for (var w : graph.bfs(v)) {
                     response += w;
                 }
             } catch (IllegalArgumentException e) {
@@ -181,10 +181,37 @@ class IO {
     }
 
     private boolean containsMatch() {
-        return false;// TODO
+        // contains "v"
+        var p = Pattern.compile("contains \"([^\"]+)\"");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var v = m.group(1);
+
+            try {
+                this.response = "\t" + graph.contains(v);
+            } catch (IllegalArgumentException e) {
+                this.response = "\t" + e.getMessage();
+            }
+		}
+		return isMatch;
     }
 
     private boolean isEdgeMatch() {
-        return false;// TODO
+        // isEdge "v1" "v2"
+        var p = Pattern.compile("isEdge \"([^\"]+)\" \"([^\"]+)\"");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var v1 = m.group(1);
+            var v2 = m.group(2);
+
+            try {
+                this.response = "\t" + graph.isEdge(v1, v2);
+            } catch (IllegalArgumentException e) {
+                this.response = "\t" + e.getMessage();
+            }
+		}
+		return isMatch;
     }
 }
