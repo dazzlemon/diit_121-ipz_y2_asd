@@ -176,18 +176,24 @@ public final class AdjacencyMatrix extends AbstractGraph {
 
     @Override
     public void remove(String v1, String v2) {
-        if (ids.contains(v1) && ids.contains(v2)) {
-            var i1 = ids.indexOf(v1);
-            var i2 = ids.indexOf(v2);
-            
-            matrix.get(i1).set(i2, false);
+        if (!contains(v1) || !contains(v2)) {
+            throw new IllegalArgumentException(
+                "Attempt to remove edge between non existent vertices"
+            );
         }
+
+        var i1 = ids.indexOf(v1);
+        var i2 = ids.indexOf(v2);
+        
+        matrix.get(i1).set(i2, false);
     }
 
     @Override
     protected Vertex stringToVertex(String v) {
-        if (!ids.contains(v)) {
-            return null;
+        if (!contains(v)) {
+            throw new IllegalArgumentException(
+                "Attempt to convert string to vertex that is not in this graph"
+            );
         }
         return new Vertex(ids.indexOf(v));
     }

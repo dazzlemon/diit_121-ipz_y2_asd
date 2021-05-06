@@ -8,6 +8,7 @@ import java.util.Collection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.Assertions;
 
 @RunWith(Parameterized.class)
 public class GraphTest {
@@ -98,7 +99,7 @@ public class GraphTest {
     public final void testBfs() {
         var graph = graphFactory.graph();
         graphInit(graph);
-        
+
         var str1 = "";
         for (var v : graph.bfs("A")) {
             str1 += v;
@@ -112,6 +113,60 @@ public class GraphTest {
         assertTrue(
             graph.getClass().getTypeName() + "::bfs is wrong",
             str1.compareTo("ABCDEF") == 0 && str2.compareTo("CAFBDE") == 0
+        );
+    }
+
+    @Test
+    public final void testIllegalArgs() {
+        var graph = graphFactory.graph();
+        graphInit(graph);
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.dfs("M");
+            },
+            graph.getClass().getTypeName() + "::dfs doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.bfs("M");
+            },
+            graph.getClass().getTypeName() + "::bfs doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.add("A");
+            },
+            graph.getClass().getTypeName() + "::add already existent vertex doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.add("A", "M");
+            },
+            graph.getClass().getTypeName() + "::add edge for non existent vertex doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.remove("M");
+            },
+            graph.getClass().getTypeName() + "::remove non existent vertex doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.remove("A", "M");
+            },
+            graph.getClass().getTypeName() + "::remove edge for non existent vertex doesnt throw"
         );
     }
 
