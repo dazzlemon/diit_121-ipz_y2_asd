@@ -105,17 +105,59 @@ class IO {
             } catch (IllegalArgumentException e) {
                 this.response = "\t" + e.getMessage();
             }
-            
 		}
 		return isMatch;
     }
 
     private boolean removeMatch() {
-        return false;// TODO
+        // remove "v"
+        // remove "v1" "v2"
+        var p = Pattern.compile("remove \"([^\"]+)\"( \"([^\"]+)\")?");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var v1 = m.group(1);
+            var v2 = m.group(3);
+
+            try {
+                if (v2 == null) {
+                    graph.remove(v1);
+                    this.response = String.format(
+                        "\tSuccessfully removed vertex \"%s\"",
+                        v1
+                    );
+                } else {
+                    graph.remove(v1, v2);
+                    this.response = String.format(
+                        "\tSuccessfully removed edge from \"%s\" to \"%s\"",
+                        v1, v2
+                    );
+                }
+            } catch (IllegalArgumentException e) {
+                this.response = "\t" + e.getMessage();
+            }
+		}
+		return isMatch;
     }
 
     private boolean dfsMatch() {
-        return false;// TODO
+        // dfs "v"
+        var p = Pattern.compile("dfs \"([^\"]+)\"");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var v = m.group(1);
+
+            try {
+                this.response = "\t";
+                for (var w : graph.dfs(v)) {
+                    response += w;
+                }
+            } catch (IllegalArgumentException e) {
+                this.response = "\t" + e.getMessage();
+            }
+		}
+		return isMatch;
     }
 
     private boolean bfsMatch() {
