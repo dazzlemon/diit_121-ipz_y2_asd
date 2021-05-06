@@ -161,7 +161,23 @@ class IO {
     }
 
     private boolean bfsMatch() {
-        return false;// TODO
+        // bfs "v"
+        var p = Pattern.compile("bfs \"([^\"]+)\"");//^$ are included by matches()
+		var m = p.matcher(this.query);
+		var isMatch = m.matches();
+		if (isMatch) {
+            var v = m.group(1);
+
+            try {
+                this.response = "\t";
+                for (var w : graph.dfs(v)) {
+                    response += w;
+                }
+            } catch (IllegalArgumentException e) {
+                this.response = "\t" + e.getMessage();
+            }
+		}
+		return isMatch;
     }
 
     private boolean containsMatch() {
