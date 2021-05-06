@@ -65,7 +65,7 @@ class IO {
 	}
 
     private boolean match() {
-        return !addMatch() && !removeMatch() && !dfsMatch() && bfsMatch() && containsMatch();
+        return addMatch() || removeMatch() || dfsMatch() || bfsMatch() && containsMatch();
     }
 
     /**
@@ -75,11 +75,26 @@ class IO {
     private boolean addMatch() {
         // add "v"
         // add "v1" "v2"
-        var p = Pattern.compile("add \"(.+)\" \"(.+)\"");//^$ are included by matches()
+        var p = Pattern.compile("add \"([^\"]+)\"( \"([^\"]+)\")?");//^$ are included by matches()
 		var m = p.matcher(this.query);
 		var isMatch = m.matches();
 		if (isMatch) {
-			this.response = "\tsuccessufully added";
+            var v1 = m.group(1);
+            var v2 = m.group(3);
+
+            if (v2 == null) {
+                graph.add(v1);
+                this.response = String.format(
+                    "\tSuccessfully added vertex \"%s\"",
+                    v1
+                );
+            } else {
+                graph.add(v1, v2);
+                this.response = String.format(
+                    "\tSuccessfully added edge from \"%s\" to \"%s\"",
+                    v1, v2
+                );
+            }
 		}
 		return isMatch;
     }
