@@ -25,14 +25,6 @@ public abstract class AbstractGraph implements Graph {
         public int compareTo(Vertex arg0) {
             return getId().compareToIgnoreCase(arg0.getId());
         }
-        
-        @Override
-        public boolean equals(Object other) {// for search algorithm
-            if (other.getClass() != this.getClass()) {
-                return false;
-            }
-            return getId() == ((Vertex)other).getId();
-        }
     }
 
     private abstract class PushPopCollection <T> {
@@ -113,7 +105,7 @@ public abstract class AbstractGraph implements Graph {
         var discovered = new Stack<String>();
         while (!collection.isEmpty()) {
             v = collection.pop();
-            if (discovered.search(v.getId()) == -1) {
+            if (!discovered.contains(v.getId())) {
                 discovered.push(v.getId());
 
                 var vns = v.neighbours();
