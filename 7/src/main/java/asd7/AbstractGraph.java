@@ -195,12 +195,6 @@ public abstract class AbstractGraph implements Graph {
         while (!priorityQueue.isEmpty()) {
             var u = priorityQueue.poll();
             for (var v : u.neighbours()) {
-                // ___________________________________________________DEBUG//TODO
-                System.out.println(String.format(
-                    "u = %s, v = %s",
-                    u.getId(), v.getId()
-                ));
-                // ___________________________________________________DEBUG//TODO
                 if (!visited.contains(v.getId())) {
                     var oldDist = dist.get(v.getId());// dist from source to V
                     var distU = dist.get(u.getId());// dist from source to U
@@ -217,16 +211,10 @@ public abstract class AbstractGraph implements Graph {
                     }
                 }
             }
-            // ___________________________________________________DEBUG//TODO
-            if (u.getId() == "D") {
-                System.out.println("D is visited");
+            if (dist.containsKey(u.getId())) {
+                visited.add(u.getId());
             }
-            // ___________________________________________________DEBUG//TODO
-            visited.add(u.getId());
         }
-        // ___________________________________________________DEBUG//TODO
-        System.out.println();
-        // ___________________________________________________DEBUG//TODO
         return new Dijkstra(dist, prev, source);
     }
 

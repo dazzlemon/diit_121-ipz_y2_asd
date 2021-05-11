@@ -193,7 +193,7 @@ public class GraphTest {
         assertTrue("CC wrong", graph.dijkstra("C").getDist("C") == 0);
         assertTrue("CA wrong", graph.dijkstra("C").getDist("A") == 1);
         assertTrue("CB wrong", graph.dijkstra("C").getDist("B") == 2);
-        //assertTrue("CD wrong", graph.dijkstra("C").getDist("D") == 2);
+        assertTrue("CD wrong", graph.dijkstra("C").getDist("D") == 2);
         assertTrue("CE wrong", graph.dijkstra("C").getDist("E") == 3);
         assertTrue("CF wrong", graph.dijkstra("C").getDist("F") == 1);
     }
