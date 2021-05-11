@@ -63,23 +63,23 @@ class IO {
     }
 
     IO() {
-        graph.add("A");
-        graph.add("B");
-        graph.add("C");
-        graph.add("D");
-        graph.add("E");
-        graph.add("F");
+        // graph.add("A");
+        // graph.add("B");
+        // graph.add("C");
+        // graph.add("D");
+        // graph.add("E");
+        // graph.add("F");
 
-        graph.add("A", "B");
-        graph.add("A", "C");
-        graph.add("A", "D");
+        // graph.add("A", "B");
+        // graph.add("A", "C");
+        // graph.add("A", "D");
 
-        graph.add("B", "E");
-        graph.add("B", "F");
+        // graph.add("B", "E");
+        // graph.add("B", "F");
 
-        graph.add("C", "F");
-        graph.add("C", "A");
-        
+        // graph.add("C", "F");
+        // graph.add("C", "A");
+
         commands = new Command[] {
             new Command0args() {
                 @Override
