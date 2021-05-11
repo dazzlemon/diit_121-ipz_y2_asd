@@ -140,9 +140,9 @@ public abstract class AbstractGraph implements Graph {
 
         @Override
         public int getDist(String to) {
-            for (var k : dist.keySet()) {
-                System.out.println(k + " " + dist.get(k));
-            }
+            // for (var k : dist.keySet()) {
+            //     System.out.println(k + " " + dist.get(k));
+            // }
             return dist.get(to);
         }
     }
@@ -195,6 +195,14 @@ public abstract class AbstractGraph implements Graph {
         while (!priorityQueue.isEmpty()) {
             var u = priorityQueue.poll();
             for (var v : u.neighbours()) {
+                // ___________________________________________________DEBUG//TODO
+                if (v.getId() == "D" && visited.contains("D")) {
+                    System.out.println(String.format(
+                        "v = D; isVisited source: %s, distToD: %s",
+                        source, dist.get("D")
+                    ));
+                }
+                // ___________________________________________________DEBUG//TODO
                 if (!visited.contains(v.getId())) {
                     var oldDist = dist.get(v.getId());// dist from source to V
                     var distU = dist.get(u.getId());// dist from source to U
