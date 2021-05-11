@@ -178,6 +178,27 @@ public class GraphTest {
         );
     }
 
+    @Test
+    public final void testDijkstra() {
+        var graph = graphFactory.graph();
+        graphInit(graph);
+
+        assertTrue("AA wrong", graph.dijkstra("A").getDist("A") == 0);
+        assertTrue("AB wrong", graph.dijkstra("A").getDist("B") == 1);
+        assertTrue("AC wrong", graph.dijkstra("A").getDist("C") == 1);
+        assertTrue("AD wrong", graph.dijkstra("A").getDist("D") == 1);
+        assertTrue("AE wrong", graph.dijkstra("A").getDist("E") == 2);
+        assertTrue("AF wrong", graph.dijkstra("A").getDist("F") == 2);
+
+        assertTrue("CC wrong", graph.dijkstra("C").getDist("C") == 0);
+        assertTrue("CA wrong", graph.dijkstra("C").getDist("A") == 1);
+        assertTrue("CB wrong", graph.dijkstra("C").getDist("B") == 2);
+        //assertTrue("CD wrong", graph.dijkstra("C").getDist("D") == 2);
+        assertTrue("CE wrong", graph.dijkstra("C").getDist("E") == 3);
+        //assertTrue("CF wrong", graph.dijkstra("C").getDist("F") == 2);
+    }
+
+
     @Parameterized.Parameters
     public static Collection<Object[]> instancesToTest() {
         return Arrays.asList(

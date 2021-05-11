@@ -73,4 +73,10 @@ public interface Graph {
      * @return # of vertices
      */
     public int size();
+
+    interface Dijkstra {
+        int getDist(String to);
+    }
+
+    public Dijkstra dijkstra(String source);
 }
