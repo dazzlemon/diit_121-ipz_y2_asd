@@ -74,10 +74,30 @@ public interface Graph {
      */
     public int size();
 
+    /**
+     * should have a constructor for source(obviously)
+     */
     interface Dijkstra {
+        /**
+         * returns distance from source to target
+         * @param to
+         * @return
+         */
         int getDist(String to);
+
+        /**
+         * returns path from source to target,
+         * can call getDist again with results to have partial distances
+         * @param to
+         * @return
+         */
         Iterable<String> getTrace(String to);
     }
 
+    /**
+     * return object of interface specified above
+     * @param source
+     * @return
+     */
     public Dijkstra dijkstra(String source);
 }
