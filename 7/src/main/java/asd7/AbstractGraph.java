@@ -140,10 +140,23 @@ public abstract class AbstractGraph implements Graph {
 
         @Override
         public int getDist(String to) {
-            // for (var k : dist.keySet()) {
-            //     System.out.println(k + " " + dist.get(k));
-            // }
             return dist.get(to);
+        }
+
+        @Override
+        public Iterable<String> getTrace(String to) {
+            var stack = new Stack<String>();
+            var current = to;
+            do {
+                stack.push(current);
+                current = prev.get(current);
+            } while (current != null);
+            
+            var list = new Stack<String>();
+            for (var v : stack) {
+                list.add(0, v);
+            }
+            return list;
         }
     }
 

@@ -76,6 +76,7 @@ public interface Graph {
 
     interface Dijkstra {
         int getDist(String to);
+        Iterable<String> getTrace(String to);
     }
 
     public Dijkstra dijkstra(String source);

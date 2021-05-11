@@ -63,6 +63,23 @@ class IO {
     }
 
     IO() {
+        graph.add("A");
+        graph.add("B");
+        graph.add("C");
+        graph.add("D");
+        graph.add("E");
+        graph.add("F");
+
+        graph.add("A", "B");
+        graph.add("A", "C");
+        graph.add("A", "D");
+
+        graph.add("B", "E");
+        graph.add("B", "F");
+
+        graph.add("C", "F");
+        graph.add("C", "A");
+        
         commands = new Command[] {
             new Command0args() {
                 @Override
@@ -272,6 +289,42 @@ class IO {
                 @Override
                 public String getDescription() {
                     return "\"<v1>\"[ \"<v2>\"]";
+                }
+            },
+            new Command1or2args() {
+                @Override
+                public String run(String... args) {
+                    String str = "";
+                    var dijkstra = graph.dijkstra(args[0]);
+                    if (args.length == 2 && args[1] != null) {
+                        String trace = "\t";
+                        for (var v : dijkstra.getTrace(args[1])) {
+                            trace += v + " ";
+                        }
+                        str = String.format(
+                            "Path from %s to %s is %s long\n" +
+                            trace, args[0], args[1], dijkstra.getDist(args[1])
+                        );
+                    } else {// == 1
+                        str += "from to dist\n";
+                        for (var v : graph.dfs(args[0])) {
+                            str += String.format(
+                                "   %s  %s    %s\n", 
+                                args[0], v, dijkstra.getDist(v)
+                            );
+                        }
+                    }
+                    return str;
+                }
+
+                @Override
+                public String getName() {
+                    return "dijkstra";
+                }
+
+                @Override
+                public String getDescription() {
+                    return "\"<source>\"[ \"<target>\"]";
                 }
             },
             new Command2args() {
