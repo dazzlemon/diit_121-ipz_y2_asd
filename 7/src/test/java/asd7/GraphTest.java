@@ -176,6 +176,30 @@ public class GraphTest {
             },
             graph.getClass().getTypeName() + "::remove edge for non existent vertex doesnt throw"
         );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.dijkstra("M");
+            },
+            graph.getClass().getTypeName() + "::dijkstra for non existent source doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.dijkstra("A").getDist("M");
+            },
+            graph.getClass().getTypeName() + "::dijkstra::dist for non existent target doesnt throw"
+        );
+
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+                graph.dijkstra("A").getTrace("M");
+            },
+            graph.getClass().getTypeName() + "::dijkstra::trace for non existent target doesnt throw"
+        );
     }
 
     @Test

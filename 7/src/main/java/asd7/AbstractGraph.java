@@ -140,11 +140,17 @@ public abstract class AbstractGraph implements Graph {
 
         @Override
         public int getDist(String to) {
+            if (!dist.containsKey(to)) {
+                throw new IllegalArgumentException("no connection to that node or it doesn't exist");
+            }
             return dist.get(to);
         }
 
         @Override
         public Iterable<String> getTrace(String to) {
+            if (!prev.containsKey(to)) {
+                throw new IllegalArgumentException("no connection to that node or it doesn't exist");
+            }
             var stack = new Stack<String>();
             var current = to;
             do {
