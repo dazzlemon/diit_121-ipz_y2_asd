@@ -294,25 +294,29 @@ class IO {
             new Command1or2args() {
                 @Override
                 public String run(String... args) {
-                    String str = "";
-                    var dijkstra = graph.dijkstra(args[0]);
-                    if (args.length == 2 && args[1] != null) {
-                        String trace = "\t";
-                        for (var v : dijkstra.getTrace(args[1])) {
-                            trace += v + " ";
-                        }
-                        str = String.format(
-                            "Path from %s to %s is %s long\n" +
-                            trace, args[0], args[1], dijkstra.getDist(args[1])
-                        );
-                    } else {// == 1
-                        str += "from to dist\n";
-                        for (var v : graph.dfs(args[0])) {
-                            str += String.format(
-                                "   %s  %s    %s\n", 
-                                args[0], v, dijkstra.getDist(v)
+                    String str = "\t";
+                    try {
+                        var dijkstra = graph.dijkstra(args[0]);
+                        if (args.length == 2 && args[1] != null) {
+                            String trace = "\t";
+                            for (var v : dijkstra.getTrace(args[1])) {
+                                trace += v + " ";
+                            }
+                            str = String.format(
+                                "Path from %s to %s is %s long\n" +
+                                trace, args[0], args[1], dijkstra.getDist(args[1])
                             );
+                        } else {// == 1
+                            str += "from to dist\n";
+                            for (var v : graph.dfs(args[0])) {
+                                str += String.format(
+                                    "   %s  %s    %s\n", 
+                                    args[0], v, dijkstra.getDist(v)
+                                );
+                            }
                         }
+                    } catch (IllegalArgumentException e) {
+                        str += e.getMessage();
                     }
                     return str;
                 }
