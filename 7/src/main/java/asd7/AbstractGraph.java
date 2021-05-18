@@ -214,7 +214,7 @@ public abstract class AbstractGraph implements Graph {
         while (!priorityQueue.isEmpty()) {
             var u = priorityQueue.poll();
             for (var v : u.neighbours()) {
-                if (!visited.contains(v.getId())) {
+                if (!visited.contains(v.getId()) && dist.containsKey(u.getId())) {
                     var oldDist = dist.get(v.getId());// dist from source to V
                     var distU = dist.get(u.getId());// dist from source to U
 

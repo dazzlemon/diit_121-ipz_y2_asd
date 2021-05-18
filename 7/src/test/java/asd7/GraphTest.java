@@ -253,6 +253,7 @@ public class GraphTest {
         graph.add("7", "6");
 
         var dijkstra = graph.dijkstra("3");
+
         assertTrue(dijkstra.getDist("3") == 0);
         assertTrue(dijkstra.getDist("4") == 2);
         assertTrue(dijkstra.getDist("5") == 3);
