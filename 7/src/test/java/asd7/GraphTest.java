@@ -222,6 +222,46 @@ public class GraphTest {
         assertTrue("CF wrong", graph.dijkstra("C").getDist("F") == 1);
     }
 
+    @Test
+    public final void testDIjkstra2() {
+        var graph = graphFactory.graph();
+
+        graph.add("1");
+        graph.add("2");
+        graph.add("3");
+        graph.add("4");
+        graph.add("5");
+        graph.add("6");
+        graph.add("7");
+
+        graph.add("1", "4");
+        graph.add("1", "2");
+        
+        graph.add("2", "4");
+        graph.add("2", "5");
+
+        graph.add("3", "1");
+        graph.add("3", "6");
+
+        graph.add("4", "3");
+        graph.add("4", "5");
+        graph.add("4", "6");
+        graph.add("4", "7");
+
+        graph.add("5", "7");
+
+        graph.add("7", "6");
+
+        var dijkstra = graph.dijkstra("3");
+        assertTrue(dijkstra.getDist("3") == 0);
+        assertTrue(dijkstra.getDist("4") == 2);
+        assertTrue(dijkstra.getDist("5") == 3);
+        assertTrue(dijkstra.getDist("6") == 1);
+        assertTrue(dijkstra.getDist("7") == 3);
+        assertTrue(dijkstra.getDist("1") == 1);
+        assertTrue(dijkstra.getDist("2") == 2);
+    }
+
 
     @Parameterized.Parameters
     public static Collection<Object[]> instancesToTest() {
